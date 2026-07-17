@@ -1,0 +1,6 @@
+{
+  "utterances": 7176,
+  "base_cer": 0.08569388470146845,
+  "fused_cer": 0.08596320466357356,
+  "router_used": true
+}
