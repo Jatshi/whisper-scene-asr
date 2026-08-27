@@ -10,7 +10,7 @@
 | F 盘项目与源码 | `F:\Codex\2026-07-16\new-chat\outputs\whisper-scene-asr` |
 | F 盘全量实验输出 | `F:\Codex\2026-07-16\new-chat\outputs\whisper-scene-asr\output\v2` |
 | GitHub 安全发布工作副本 | `F:\Codex\2026-07-16\new-chat\outputs\whisper-scene-asr-github-delivery` |
-| 待重建的纯源码包 | `F:\Codex\2026-07-16\new-chat\outputs\whisper-scene-asr-v2-source-ready.tar.gz` |
+| 纯源码包 | `F:\Codex\2026-07-16\new-chat\outputs\whisper-scene-asr-v2-source-ready.tar.gz` |
 | AutoDL 项目 | `/root/autodl-tmp/whisper-scene-asr` |
 | AutoDL 全量输出 | `/root/autodl-tmp/whisper-scene-asr/output/v2` |
 | 原始夯实规划（未修改） | `C:\Users\jat_s\WorkBuddy\2026-06-02-09-04-45\项目夯实规划_Whisper多场景ASR.md` |
@@ -94,10 +94,10 @@ joint-minus-base 为 -25.360 个百分点，2,000 次 utterance-paired bootstrap
 
 ## 7. 发布状态
 
-本节会在发布动作完成后写入最终 commit、URL 和远端文件核验。目前目标位置为：
-
-- GitHub：`https://github.com/Jatshi/whisper-scene-asr`
-- Hugging Face：`https://huggingface.co/jatshi/whisper-scene-asr/tree/main/v2`
+- GitHub main：`https://github.com/Jatshi/whisper-scene-asr`，v2 源码、测试、README、结果和踩坑文档已发布。
+- Hugging Face：`https://huggingface.co/jatshi/whisper-scene-asr/tree/main/v2`，已发布 18 个 v2 文件、451,499,414 bytes；revision 为 `479795b1f3cb0554c24c3b087df49a189fe89451`。
+- Hugging Face 上完整 tar 的 LFS SHA-256 为 `25434d6e6e0bc372aec3f6c0304550e07044945645e0b816379e87e962a711cd`，与 F 盘、AutoDL 一致。
+- F 盘纯源码包为 131,211 bytes，SHA-256 `5717ade28b7fc73de9a967596f138c916925aa3383fbf713b2fcb6f7a4e19672`。为避免统计文件记录自身哈希造成循环变化，源码包只排除了本统计文档，代码、测试、README 与其他文档均包含。
 
 GitHub 只发布源码、小型结果和文档；Hugging Face 发布五个专家 adapter、joint adapter、路由器、关键结果 JSON 与 347.78MB 可移植包；F 盘保留完整 1.395GB 实验目录。
 

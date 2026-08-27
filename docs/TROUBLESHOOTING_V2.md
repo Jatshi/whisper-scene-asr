@@ -79,3 +79,13 @@
 “我先用真实 Whisper-small + PEFT 做 GPU smoke，发现不是显存问题，而是框架语义问题。PEFT 的文本 Seq2Seq wrapper 会给 Whisper 注入 `input_ids`，修正为通用 PeftModel 后，反向又因为冻结主干和 reentrant checkpoint 的组合断了梯度图。我检查 forward signature、可训练参数和 loss 的 `grad_fn`，最终改成 non-reentrant checkpoint。smoke 能完成真实前反向后才放行全量流水线。为避免 SSH 切换导致重跑，我又用 stage marker、checkpoint 和配置指纹做三层保护。最终五专家、joint、四路 5,000 条评测完整跑通。”
 
 这个说法能回到代码和产物验证，不要扩写成没有发生过的分布式训练或生产事故。
+
+## 10. Hugging Face 镜像上传在 multipart 完成阶段失败
+
+**现象**：官方 Hugging Face 域名从 AutoDL 超时；镜像 API 可以认证并上传分片，但它返回的 multipart completion URL 使用了无法解析的 `hf-mirror.org`，导致已上传分片不能完成提交。
+
+**定位**：14.2MB adapter 的分片进度均到 100%，错误只出现在 `complete_multipart`；远端 DNS 能解析 `hf-mirror.com`，不能解析 `.org`。因此不是 token、文件内容或带宽问题，而是镜像签发的完成地址主机错误。
+
+**修复**：上传客户端只对精确前缀 `https://hf-mirror.org/` 重写为活动的 `https://hf-mirror.com/`，不改路径、查询参数或签名。重试后六个 adapter、路由器和 364,673,111-byte tar 全部完成；随后通过模型 API 重新列举 18 个 v2 文件，并比对 tar、路由器和 adapter 的 LFS SHA-256。
+
+**边界**：这是特定镜像的兼容补丁，不应放进训练代码，也不应做宽泛的 URL 替换。网络恢复后应优先回到官方 endpoint。
