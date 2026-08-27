@@ -1,4 +1,5 @@
 """Audio loading utilities with a single 16 kHz mono invariant for Whisper."""
+
 from __future__ import annotations
 
 from math import gcd

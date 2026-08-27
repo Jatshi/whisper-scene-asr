@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "review_status": "pending Codex review",
+  "scope": "One AISHELL-1-derived five-scene evaluation with 5000 held-out utterances; no cross-dataset or multi-seed generalization claim.",
+  "claims": [
+    {
+      "id": "overall-joint-cer",
+      "claim": "On the fixed v2 evaluation, joint LoRA achieved 0.1505061559507524 overall CER versus 0.40410396716826263 for the adapter-disabled base.",
+      "evidence": [
+        {"file": "output/v2/evaluation.summary.json", "json_path": "$.buckets.overall.metrics.joint.cer", "expected": 0.1505061559507524},
+        {"file": "output/v2/evaluation.summary.json", "json_path": "$.buckets.overall.metrics.base.cer", "expected": 0.40410396716826263}
+      ]
+    },
+    {
+      "id": "joint-paired-bootstrap",
+      "claim": "The paired joint-minus-base CER difference was -0.25359781121751024 with a 95% bootstrap interval of [-0.2939305043322473, -0.22080613737349164].",
+      "evidence": [
+        {"file": "output/v2/evaluation.summary.json", "json_path": "$.buckets.overall.paired_vs_base.joint.candidate_minus_baseline", "expected": -0.25359781121751024},
+        {"file": "output/v2/evaluation.summary.json", "json_path": "$.buckets.overall.paired_vs_base.joint.ci95_low", "expected": -0.2939305043322473},
+        {"file": "output/v2/evaluation.summary.json", "json_path": "$.buckets.overall.paired_vs_base.joint.ci95_high", "expected": -0.22080613737349164}
+      ]
+    },
+    {
+      "id": "router-calibration",
+      "claim": "The source-disjoint router validation accuracy was 0.8883999586105347 and calibrated ECE was 0.012014652602374554.",
+      "evidence": [
+        {"file": "output/v2/router_metrics.json", "json_path": "$.validation_accuracy", "expected": 0.8883999586105347},
+        {"file": "output/v2/router_metrics.json", "json_path": "$.ece", "expected": 0.012014652602374554},
+        {"file": "output/v2/router_metrics.json", "json_path": "$.source_disjoint", "expected": true}
+      ]
+    },
+    {
+      "id": "fallback-rate",
+      "claim": "The evidence gate fell back to the base model for 11.44% of evaluation utterances.",
+      "evidence": [
+        {"file": "output/v2/evaluation.summary.json", "json_path": "$.buckets.overall.routing.fallback_rate", "expected": 0.1144}
+      ]
+    },
+    {
+      "id": "gpu-smoke",
+      "claim": "A real Whisper-small LoRA forward/backward GPU smoke passed on an RTX 4080 SUPER.",
+      "evidence": [
+        {"file": "output/v2/gpu_smoke.json", "json_path": "$.status", "expected": "passed"},
+        {"file": "output/v2/gpu_smoke.json", "json_path": "$.gpu", "expected": "NVIDIA GeForce RTX 4080 SUPER"}
+      ]
+    }
+  ],
+  "unsupported_claims": [
+    "state of the art",
+    "universal real-world robustness",
+    "soft routing always beats hard routing",
+    "production ready"
+  ]
+}

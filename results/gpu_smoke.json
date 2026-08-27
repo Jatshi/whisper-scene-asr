@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "model": "openai/whisper-small",
+  "loss": 7.541166305541992,
+  "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+  "peak_memory_gb": 1.0558390617370605,
+  "trainable_parameters": 221184
+}

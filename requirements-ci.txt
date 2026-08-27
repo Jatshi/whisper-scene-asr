@@ -1,0 +1,7 @@
+librosa==0.10.2.post1
+soundfile==0.12.1
+numpy==1.26.4
+scipy==1.13.1
+tqdm==4.66.6
+pytest==8.3.3
+ruff==0.7.3

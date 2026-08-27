@@ -1,0 +1,53 @@
+{
+  "validation_accuracy": 0.8883999586105347,
+  "temperature": 0.6637520790100098,
+  "ece": 0.012014652602374554,
+  "confusion_matrix": [
+    [
+      442,
+      47,
+      9,
+      0,
+      2
+    ],
+    [
+      22,
+      445,
+      0,
+      0,
+      33
+    ],
+    [
+      29,
+      12,
+      428,
+      0,
+      31
+    ],
+    [
+      0,
+      0,
+      0,
+      499,
+      1
+    ],
+    [
+      0,
+      71,
+      22,
+      0,
+      407
+    ]
+  ],
+  "scenes": [
+    "clean",
+    "noisy",
+    "reverb",
+    "fast_slow",
+    "noisy_reverb"
+  ],
+  "source_disjoint": true,
+  "architecture": "whisper_mean_std_mlp_v2",
+  "encoder_passes_per_utterance": 1,
+  "seed": 42
+}

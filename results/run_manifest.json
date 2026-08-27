@@ -1,0 +1,1464 @@
+{
+  "schema_version": "2.0",
+  "created_at": "2026-08-26T19:38:42.031900+00:00",
+  "status": "complete",
+  "platform": "Linux-5.15.0-161-generic-x86_64-with-glibc2.35",
+  "python": "3.10.8",
+  "gpu": "NVIDIA GeForce RTX 4080 SUPER, 32760 MiB, 595.71.05",
+  "git_commit": null,
+  "packages": {
+    "torch": "2.3.1+cu121",
+    "transformers": "4.46.3",
+    "peft": "0.13.2",
+    "accelerate": "1.1.1",
+    "librosa": "0.10.2.post1",
+    "numpy": "1.26.4"
+  },
+  "dataset_report": {
+    "version": "2.0",
+    "seed": 42,
+    "counts": {
+      "train": 25000,
+      "validation": 2500,
+      "test": 5000
+    },
+    "scenes": [
+      "clean",
+      "noisy",
+      "reverb",
+      "fast_slow",
+      "noisy_reverb"
+    ],
+    "noise_sources": [
+      "MUSAN"
+    ],
+    "rir_sources": [
+      "OpenSLR RIRS_NOISES real RIR"
+    ],
+    "noise_licenses": [
+      "CC BY 4.0"
+    ],
+    "rir_licenses": [
+      "Apache-2.0"
+    ],
+    "source_disjoint": true
+  },
+  "router_metrics": {
+    "validation_accuracy": 0.8883999586105347,
+    "temperature": 0.6637520790100098,
+    "ece": 0.012014652602374554,
+    "confusion_matrix": [
+      [
+        442,
+        47,
+        9,
+        0,
+        2
+      ],
+      [
+        22,
+        445,
+        0,
+        0,
+        33
+      ],
+      [
+        29,
+        12,
+        428,
+        0,
+        31
+      ],
+      [
+        0,
+        0,
+        0,
+        499,
+        1
+      ],
+      [
+        0,
+        71,
+        22,
+        0,
+        407
+      ]
+    ],
+    "scenes": [
+      "clean",
+      "noisy",
+      "reverb",
+      "fast_slow",
+      "noisy_reverb"
+    ],
+    "source_disjoint": true,
+    "architecture": "whisper_mean_std_mlp_v2",
+    "encoder_passes_per_utterance": 1,
+    "seed": 42
+  },
+  "evaluation": {
+    "utterances": 5000,
+    "systems": [
+      "base",
+      "hard",
+      "soft",
+      "joint"
+    ],
+    "bootstrap_samples": 2000,
+    "seed": 42,
+    "buckets": {
+      "overall": {
+        "utterances": 5000,
+        "routing": {
+          "reason_counts": {
+            "accepted": 4428,
+            "low_confidence": 572
+          },
+          "route_counts": {
+            "base": 572,
+            "clean": 775,
+            "fast_slow": 995,
+            "noisy": 989,
+            "noisy_reverb": 860,
+            "reverb": 809
+          },
+          "fallback_rate": 0.1144,
+          "mean_confidence": 0.8740228371739388,
+          "mean_entropy": 0.3382879959524941
+        },
+        "metrics": {
+          "base": {
+            "substitutions": 23161,
+            "deletions": 1080,
+            "insertions": 5299,
+            "reference_units": 73100,
+            "errors": 29540,
+            "cer": 0.40410396716826263
+          },
+          "hard": {
+            "substitutions": 11840,
+            "deletions": 354,
+            "insertions": 358,
+            "reference_units": 73100,
+            "errors": 12552,
+            "cer": 0.17170998632010945
+          },
+          "soft": {
+            "substitutions": 12129,
+            "deletions": 977,
+            "insertions": 1041,
+            "reference_units": 73100,
+            "errors": 14147,
+            "cer": 0.1935294117647059
+          },
+          "joint": {
+            "substitutions": 10531,
+            "deletions": 278,
+            "insertions": 193,
+            "reference_units": 73100,
+            "errors": 11002,
+            "cer": 0.1505061559507524
+          }
+        },
+        "paired_vs_base": {
+          "hard": {
+            "candidate_minus_baseline": -0.2323939808481532,
+            "ci95_low": -0.27320369246350906,
+            "ci95_high": -0.19929126740060643,
+            "probability_candidate_better": 1.0,
+            "bootstrap_samples": 2000,
+            "seed": 42
+          },
+          "soft": {
+            "candidate_minus_baseline": -0.21057455540355674,
+            "ci95_low": -0.2512352454920376,
+            "ci95_high": -0.17438507248845828,
+            "probability_candidate_better": 1.0,
+            "bootstrap_samples": 2000,
+            "seed": 42
+          },
+          "joint": {
+            "candidate_minus_baseline": -0.25359781121751024,
+            "ci95_low": -0.2939305043322473,
+            "ci95_high": -0.22080613737349164,
+            "probability_candidate_better": 1.0,
+            "bootstrap_samples": 2000,
+            "seed": 42
+          }
+        }
+      },
+      "clean": {
+        "utterances": 1000,
+        "routing": {
+          "reason_counts": {
+            "accepted": 825,
+            "low_confidence": 175
+          },
+          "route_counts": {
+            "base": 175,
+            "clean": 745,
+            "noisy": 72,
+            "reverb": 8
+          },
+          "fallback_rate": 0.175,
+          "mean_confidence": 0.814901373744011,
+          "mean_entropy": 0.49997850181855313
+        },
+        "metrics": {
+          "base": {
+            "substitutions": 3665,
+            "deletions": 117,
+            "insertions": 344,
+            "reference_units": 14620,
+            "errors": 4126,
+            "cer": 0.28221614227086184
+          },
+          "hard": {
+            "substitutions": 1646,
+            "deletions": 38,
+            "insertions": 70,
+            "reference_units": 14620,
+            "errors": 1754,
+            "cer": 0.11997264021887825
+          },
+          "soft": {
+            "substitutions": 1743,
+            "deletions": 235,
+            "insertions": 67,
+            "reference_units": 14620,
+            "errors": 2045,
+            "cer": 0.13987688098495213
+          },
+          "joint": {
+            "substitutions": 1248,
+            "deletions": 20,
+            "insertions": 11,
+            "reference_units": 14620,
+            "errors": 1279,
+            "cer": 0.08748290013679891
+          }
+        },
+        "paired_vs_base": {
+          "hard": {
+            "candidate_minus_baseline": -0.16224350205198357,
+            "ci95_low": -0.17442731054803776,
+            "ci95_high": -0.14994773927425134,
+            "probability_candidate_better": 1.0,
+            "bootstrap_samples": 2000,
+            "seed": 42
+          },
+          "soft": {
+            "candidate_minus_baseline": -0.1423392612859097,
+            "ci95_low": -0.15601189313019792,
+            "ci95_high": -0.12853536972934176,
+            "probability_candidate_better": 1.0,
+            "bootstrap_samples": 2000,
+            "seed": 42
+          },
+          "joint": {
+            "candidate_minus_baseline": -0.19473324213406293,
+            "ci95_low": -0.2068407163406885,
+            "ci95_high": -0.18194974793551597,
+            "probability_candidate_better": 1.0,
+            "bootstrap_samples": 2000,
+            "seed": 42
+          }
+        }
+      },
+      "noisy": {
+        "utterances": 1000,
+        "routing": {
+          "reason_counts": {
+            "accepted": 873,
+            "low_confidence": 127
+          },
+          "route_counts": {
+            "base": 127,
+            "clean": 14,
+            "noisy": 829,
+            "noisy_reverb": 30
+          },
+          "fallback_rate": 0.127,
+          "mean_confidence": 0.8548754243552685,
+          "mean_entropy": 0.37369879228872055
+        },
+        "metrics": {
+          "base": {
+            "substitutions": 4113,
+            "deletions": 162,
+            "insertions": 274,
+            "reference_units": 14620,
+            "errors": 4549,
+            "cer": 0.31114911080711355
+          },
+          "hard": {
+            "substitutions": 2102,
+            "deletions": 62,
+            "insertions": 50,
+            "reference_units": 14620,
+            "errors": 2214,
+            "cer": 0.15143638850889193
+          },
+          "soft": {
+            "substitutions": 2165,
+            "deletions": 260,
+            "insertions": 45,
+            "reference_units": 14620,
+            "errors": 2470,
+            "cer": 0.1689466484268126
+          },
+          "joint": {
+            "substitutions": 1767,
+            "deletions": 38,
+            "insertions": 23,
+            "reference_units": 14620,
+            "errors": 1828,
+            "cer": 0.1250341997264022
+          }
+        },
+        "paired_vs_base": {
+          "hard": {
+            "candidate_minus_baseline": -0.15971272229822162,
+            "ci95_low": -0.1720442565962429,
+            "ci95_high": -0.14770362721917668,
+            "probability_candidate_better": 1.0,
+            "bootstrap_samples": 2000,
+            "seed": 42
+          },
+          "soft": {
+            "candidate_minus_baseline": -0.14220246238030096,
+            "ci95_low": -0.1556139368880266,
+            "ci95_high": -0.12980123396395876,
+            "probability_candidate_better": 1.0,
+            "bootstrap_samples": 2000,
+            "seed": 42
+          },
+          "joint": {
+            "candidate_minus_baseline": -0.18611491108071135,
+            "ci95_low": -0.19844161083184014,
+            "ci95_high": -0.1735576171410908,
+            "probability_candidate_better": 1.0,
+            "bootstrap_samples": 2000,
+            "seed": 42
+          }
+        }
+      },
+      "reverb": {
+        "utterances": 1000,
+        "routing": {
+          "reason_counts": {
+            "accepted": 849,
+            "low_confidence": 151
+          },
+          "route_counts": {
+            "base": 151,
+            "clean": 15,
+            "noisy": 12,
+            "noisy_reverb": 46,
+            "reverb": 776
+          },
+          "fallback_rate": 0.151,
+          "mean_confidence": 0.8438614485859871,
+          "mean_entropy": 0.41095164719215715
+        },
+        "metrics": {
+          "base": {
+            "substitutions": 3904,
+            "deletions": 157,
+            "insertions": 321,
+            "reference_units": 14620,
+            "errors": 4382,
+            "cer": 0.2997264021887825
+          },
+          "hard": {
+            "substitutions": 1983,
+            "deletions": 55,
+            "insertions": 65,
+            "reference_units": 14620,
+            "errors": 2103,
+            "cer": 0.14384404924760602
+          },
+          "soft": {
+            "substitutions": 2060,
+            "deletions": 166,
+            "insertions": 61,
+            "reference_units": 14620,
+            "errors": 2287,
+            "cer": 0.1564295485636115
+          },
+          "joint": {
+            "substitutions": 1639,
+            "deletions": 37,
+            "insertions": 19,
+            "reference_units": 14620,
+            "errors": 1695,
+            "cer": 0.11593707250341997
+          }
+        },
+        "paired_vs_base": {
+          "hard": {
+            "candidate_minus_baseline": -0.15588235294117647,
+            "ci95_low": -0.16821659496134922,
+            "ci95_high": -0.142546881762816,
+            "probability_candidate_better": 1.0,
+            "bootstrap_samples": 2000,
+            "seed": 42
+          },
+          "soft": {
+            "candidate_minus_baseline": -0.143296853625171,
+            "ci95_low": -0.15623887847464435,
+            "ci95_high": -0.12951314837139058,
+            "probability_candidate_better": 1.0,
+            "bootstrap_samples": 2000,
+            "seed": 42
+          },
+          "joint": {
+            "candidate_minus_baseline": -0.18378932968536252,
+            "ci95_low": -0.19608575595736352,
+            "ci95_high": -0.1700857456841477,
+            "probability_candidate_better": 1.0,
+            "bootstrap_samples": 2000,
+            "seed": 42
+          }
+        }
+      },
+      "fast_slow": {
+        "utterances": 1000,
+        "routing": {
+          "reason_counts": {
+            "accepted": 995,
+            "low_confidence": 5
+          },
+          "route_counts": {
+            "base": 5,
+            "fast_slow": 995
+          },
+          "fallback_rate": 0.005,
+          "mean_confidence": 0.9823948097527027,
+          "mean_entropy": 0.08601276504105222
+        },
+        "metrics": {
+          "base": {
+            "substitutions": 5487,
+            "deletions": 185,
+            "insertions": 2280,
+            "reference_units": 14620,
+            "errors": 7952,
+            "cer": 0.5439124487004104
+          },
+          "hard": {
+            "substitutions": 2296,
+            "deletions": 47,
+            "insertions": 30,
+            "reference_units": 14620,
+            "errors": 2373,
+            "cer": 0.16231190150478797
+          },
+          "soft": {
+            "substitutions": 2297,
+            "deletions": 45,
+            "insertions": 25,
+            "reference_units": 14620,
+            "errors": 2367,
+            "cer": 0.1619015047879617
+          },
+          "joint": {
+            "substitutions": 2330,
+            "deletions": 55,
+            "insertions": 31,
+            "reference_units": 14620,
+            "errors": 2416,
+            "cer": 0.1652530779753762
+          }
+        },
+        "paired_vs_base": {
+          "hard": {
+            "candidate_minus_baseline": -0.3816005471956225,
+            "ci95_low": -0.5227956450757145,
+            "ci95_high": -0.27158371981227586,
+            "probability_candidate_better": 1.0,
+            "bootstrap_samples": 2000,
+            "seed": 42
+          },
+          "soft": {
+            "candidate_minus_baseline": -0.3820109439124487,
+            "ci95_low": -0.5238661951797282,
+            "ci95_high": -0.272331246180227,
+            "probability_candidate_better": 1.0,
+            "bootstrap_samples": 2000,
+            "seed": 42
+          },
+          "joint": {
+            "candidate_minus_baseline": -0.37865937072503425,
+            "ci95_low": -0.5196693705187746,
+            "ci95_high": -0.26877814693652463,
+            "probability_candidate_better": 1.0,
+            "bootstrap_samples": 2000,
+            "seed": 42
+          }
+        }
+      },
+      "noisy_reverb": {
+        "utterances": 1000,
+        "routing": {
+          "reason_counts": {
+            "accepted": 886,
+            "low_confidence": 114
+          },
+          "route_counts": {
+            "base": 114,
+            "clean": 1,
+            "noisy": 76,
+            "noisy_reverb": 784,
+            "reverb": 25
+          },
+          "fallback_rate": 0.114,
+          "mean_confidence": 0.8740811294317246,
+          "mean_entropy": 0.3207982734219902
+        },
+        "metrics": {
+          "base": {
+            "substitutions": 5992,
+            "deletions": 459,
+            "insertions": 2080,
+            "reference_units": 14620,
+            "errors": 8531,
+            "cer": 0.583515731874145
+          },
+          "hard": {
+            "substitutions": 3813,
+            "deletions": 152,
+            "insertions": 143,
+            "reference_units": 14620,
+            "errors": 4108,
+            "cer": 0.28098495212038305
+          },
+          "soft": {
+            "substitutions": 3864,
+            "deletions": 271,
+            "insertions": 843,
+            "reference_units": 14620,
+            "errors": 4978,
+            "cer": 0.3404924760601915
+          },
+          "joint": {
+            "substitutions": 3547,
+            "deletions": 128,
+            "insertions": 109,
+            "reference_units": 14620,
+            "errors": 3784,
+            "cer": 0.25882352941176473
+          }
+        },
+        "paired_vs_base": {
+          "hard": {
+            "candidate_minus_baseline": -0.3025307797537619,
+            "ci95_low": -0.4526812441066438,
+            "ci95_high": -0.19025759006915413,
+            "probability_candidate_better": 1.0,
+            "bootstrap_samples": 2000,
+            "seed": 42
+          },
+          "soft": {
+            "candidate_minus_baseline": -0.24302325581395345,
+            "ci95_low": -0.40731277881962175,
+            "ci95_high": -0.10590037230876127,
+            "probability_candidate_better": 1.0,
+            "bootstrap_samples": 2000,
+            "seed": 42
+          },
+          "joint": {
+            "candidate_minus_baseline": -0.32469220246238023,
+            "ci95_low": -0.4768635440288223,
+            "ci95_high": -0.2124577171019295,
+            "probability_candidate_better": 1.0,
+            "bootstrap_samples": 2000,
+            "seed": 42
+          }
+        }
+      }
+    }
+  },
+  "artifacts": [
+    {
+      "path": "adapters/clean/README.md",
+      "bytes": 5094,
+      "sha256": "9095edf7bd351ebfc0f975358824aaffee9804de1bb7e4a876a3d57480ac5a79"
+    },
+    {
+      "path": "adapters/clean/adapter_config.json",
+      "bytes": 798,
+      "sha256": "05824fb7ff451b23f1e698c832d026d8d7cf6e908c166e299344108bbdf9bd6d"
+    },
+    {
+      "path": "adapters/clean/adapter_model.safetensors",
+      "bytes": 14196448,
+      "sha256": "2974debd3085f17aa6cf38e6f1b1ea16da8b3b331f45cfcab28cdee1cca04a4b"
+    },
+    {
+      "path": "adapters/clean/added_tokens.json",
+      "bytes": 34604,
+      "sha256": "9715fd2243b6f06a5858b5e32950d2853f73dd5bc201aafcf76f5082a2d8acd1"
+    },
+    {
+      "path": "adapters/clean/final/README.md",
+      "bytes": 5094,
+      "sha256": "9095edf7bd351ebfc0f975358824aaffee9804de1bb7e4a876a3d57480ac5a79"
+    },
+    {
+      "path": "adapters/clean/final/adapter_config.json",
+      "bytes": 798,
+      "sha256": "05824fb7ff451b23f1e698c832d026d8d7cf6e908c166e299344108bbdf9bd6d"
+    },
+    {
+      "path": "adapters/clean/final/adapter_model.safetensors",
+      "bytes": 14196448,
+      "sha256": "2974debd3085f17aa6cf38e6f1b1ea16da8b3b331f45cfcab28cdee1cca04a4b"
+    },
+    {
+      "path": "adapters/clean/final/added_tokens.json",
+      "bytes": 34604,
+      "sha256": "9715fd2243b6f06a5858b5e32950d2853f73dd5bc201aafcf76f5082a2d8acd1"
+    },
+    {
+      "path": "adapters/clean/final/merges.txt",
+      "bytes": 493869,
+      "sha256": "2df2990a395e35e8dfbc7511e08c12d56018d8d04691e0133e5d63b21e154dc6"
+    },
+    {
+      "path": "adapters/clean/final/normalizer.json",
+      "bytes": 52666,
+      "sha256": "bf1c507dc8724ca9cf9903640dacfb69dae2f00edee4f21ceba106a7392f26dd"
+    },
+    {
+      "path": "adapters/clean/final/preprocessor_config.json",
+      "bytes": 339,
+      "sha256": "a6a76d28c93edb273669eb9e0b0636a2bddbb1272c3261e47b7ca6dfdbac1b8d"
+    },
+    {
+      "path": "adapters/clean/final/special_tokens_map.json",
+      "bytes": 2194,
+      "sha256": "e67ae3a0aaa99abcd9f187138e12db1f65c16a14761c50ef10eef2c174a7a691"
+    },
+    {
+      "path": "adapters/clean/final/tokenizer_config.json",
+      "bytes": 282683,
+      "sha256": "2a4c4281cf9f51ac6ccc406fdc711a087afe6530f671fa7b80953edc498275ce"
+    },
+    {
+      "path": "adapters/clean/final/training_args.bin",
+      "bytes": 5560,
+      "sha256": "1a39ae63018fc419c4ea01774aeef9e6eb4b0bf008c26f615017b1eafe04f44b"
+    },
+    {
+      "path": "adapters/clean/final/vocab.json",
+      "bytes": 1036584,
+      "sha256": "50d6a919f0a0601d56a04eb583c780d18553aa388254ba3158eb6a00f13e2c1a"
+    },
+    {
+      "path": "adapters/clean/merges.txt",
+      "bytes": 493869,
+      "sha256": "2df2990a395e35e8dfbc7511e08c12d56018d8d04691e0133e5d63b21e154dc6"
+    },
+    {
+      "path": "adapters/clean/normalizer.json",
+      "bytes": 52666,
+      "sha256": "bf1c507dc8724ca9cf9903640dacfb69dae2f00edee4f21ceba106a7392f26dd"
+    },
+    {
+      "path": "adapters/clean/preprocessor_config.json",
+      "bytes": 339,
+      "sha256": "a6a76d28c93edb273669eb9e0b0636a2bddbb1272c3261e47b7ca6dfdbac1b8d"
+    },
+    {
+      "path": "adapters/clean/runs/Aug27_00-35-06_autodl-container-c4ae4b8669-38743588/events.out.tfevents.1787762107.autodl-container-c4ae4b8669-38743588.3246.0",
+      "bytes": 6016,
+      "sha256": "d6756f88747b70c17b1e38702958b6e47db87c3c669937417e6ac80ea6370228"
+    },
+    {
+      "path": "adapters/clean/runs/Aug27_00-38-13_autodl-container-c4ae4b8669-38743588/events.out.tfevents.1787762294.autodl-container-c4ae4b8669-38743588.3760.0",
+      "bytes": 15139,
+      "sha256": "49542f18b6f334b5bacd7411f568bfc60965929f1d3f03d77fbb2ff6ced9c587"
+    },
+    {
+      "path": "adapters/clean/special_tokens_map.json",
+      "bytes": 2194,
+      "sha256": "e67ae3a0aaa99abcd9f187138e12db1f65c16a14761c50ef10eef2c174a7a691"
+    },
+    {
+      "path": "adapters/clean/tokenizer_config.json",
+      "bytes": 282683,
+      "sha256": "2a4c4281cf9f51ac6ccc406fdc711a087afe6530f671fa7b80953edc498275ce"
+    },
+    {
+      "path": "adapters/clean/training_request.json",
+      "bytes": 289,
+      "sha256": "b152407f4154559f3681d680f199c7da1c71a3c2259a8eb3f65d6655193ae6b0"
+    },
+    {
+      "path": "adapters/clean/vocab.json",
+      "bytes": 1036584,
+      "sha256": "50d6a919f0a0601d56a04eb583c780d18553aa388254ba3158eb6a00f13e2c1a"
+    },
+    {
+      "path": "adapters/fast_slow/README.md",
+      "bytes": 5094,
+      "sha256": "9095edf7bd351ebfc0f975358824aaffee9804de1bb7e4a876a3d57480ac5a79"
+    },
+    {
+      "path": "adapters/fast_slow/adapter_config.json",
+      "bytes": 798,
+      "sha256": "05824fb7ff451b23f1e698c832d026d8d7cf6e908c166e299344108bbdf9bd6d"
+    },
+    {
+      "path": "adapters/fast_slow/adapter_model.safetensors",
+      "bytes": 14196448,
+      "sha256": "607cb5d4d5eac1b146d19e1024980368f1ee1cb022690cdaf92cd7baa584156f"
+    },
+    {
+      "path": "adapters/fast_slow/added_tokens.json",
+      "bytes": 34604,
+      "sha256": "9715fd2243b6f06a5858b5e32950d2853f73dd5bc201aafcf76f5082a2d8acd1"
+    },
+    {
+      "path": "adapters/fast_slow/final/README.md",
+      "bytes": 5094,
+      "sha256": "9095edf7bd351ebfc0f975358824aaffee9804de1bb7e4a876a3d57480ac5a79"
+    },
+    {
+      "path": "adapters/fast_slow/final/adapter_config.json",
+      "bytes": 798,
+      "sha256": "05824fb7ff451b23f1e698c832d026d8d7cf6e908c166e299344108bbdf9bd6d"
+    },
+    {
+      "path": "adapters/fast_slow/final/adapter_model.safetensors",
+      "bytes": 14196448,
+      "sha256": "607cb5d4d5eac1b146d19e1024980368f1ee1cb022690cdaf92cd7baa584156f"
+    },
+    {
+      "path": "adapters/fast_slow/final/added_tokens.json",
+      "bytes": 34604,
+      "sha256": "9715fd2243b6f06a5858b5e32950d2853f73dd5bc201aafcf76f5082a2d8acd1"
+    },
+    {
+      "path": "adapters/fast_slow/final/merges.txt",
+      "bytes": 493869,
+      "sha256": "2df2990a395e35e8dfbc7511e08c12d56018d8d04691e0133e5d63b21e154dc6"
+    },
+    {
+      "path": "adapters/fast_slow/final/normalizer.json",
+      "bytes": 52666,
+      "sha256": "bf1c507dc8724ca9cf9903640dacfb69dae2f00edee4f21ceba106a7392f26dd"
+    },
+    {
+      "path": "adapters/fast_slow/final/preprocessor_config.json",
+      "bytes": 339,
+      "sha256": "a6a76d28c93edb273669eb9e0b0636a2bddbb1272c3261e47b7ca6dfdbac1b8d"
+    },
+    {
+      "path": "adapters/fast_slow/final/special_tokens_map.json",
+      "bytes": 2194,
+      "sha256": "e67ae3a0aaa99abcd9f187138e12db1f65c16a14761c50ef10eef2c174a7a691"
+    },
+    {
+      "path": "adapters/fast_slow/final/tokenizer_config.json",
+      "bytes": 282683,
+      "sha256": "2a4c4281cf9f51ac6ccc406fdc711a087afe6530f671fa7b80953edc498275ce"
+    },
+    {
+      "path": "adapters/fast_slow/final/training_args.bin",
+      "bytes": 5560,
+      "sha256": "5c2345706de0675d60bc644055da14f388087619e6853bafc7e94d8bfb663701"
+    },
+    {
+      "path": "adapters/fast_slow/final/vocab.json",
+      "bytes": 1036584,
+      "sha256": "50d6a919f0a0601d56a04eb583c780d18553aa388254ba3158eb6a00f13e2c1a"
+    },
+    {
+      "path": "adapters/fast_slow/merges.txt",
+      "bytes": 493869,
+      "sha256": "2df2990a395e35e8dfbc7511e08c12d56018d8d04691e0133e5d63b21e154dc6"
+    },
+    {
+      "path": "adapters/fast_slow/normalizer.json",
+      "bytes": 52666,
+      "sha256": "bf1c507dc8724ca9cf9903640dacfb69dae2f00edee4f21ceba106a7392f26dd"
+    },
+    {
+      "path": "adapters/fast_slow/preprocessor_config.json",
+      "bytes": 339,
+      "sha256": "a6a76d28c93edb273669eb9e0b0636a2bddbb1272c3261e47b7ca6dfdbac1b8d"
+    },
+    {
+      "path": "adapters/fast_slow/runs/Aug27_01-15-27_autodl-container-c4ae4b8669-38743588/events.out.tfevents.1787764527.autodl-container-c4ae4b8669-38743588.3760.3",
+      "bytes": 15151,
+      "sha256": "16d7e4fb6ca96067e0888fb819a0e1e9a91f02981cf627f738ed7eb43aa7e911"
+    },
+    {
+      "path": "adapters/fast_slow/special_tokens_map.json",
+      "bytes": 2194,
+      "sha256": "e67ae3a0aaa99abcd9f187138e12db1f65c16a14761c50ef10eef2c174a7a691"
+    },
+    {
+      "path": "adapters/fast_slow/tokenizer_config.json",
+      "bytes": 282683,
+      "sha256": "2a4c4281cf9f51ac6ccc406fdc711a087afe6530f671fa7b80953edc498275ce"
+    },
+    {
+      "path": "adapters/fast_slow/training_request.json",
+      "bytes": 289,
+      "sha256": "c4421106dafccc43afae0dfd5ca6251fe91f644b15ed1996222102d01b63ce01"
+    },
+    {
+      "path": "adapters/fast_slow/vocab.json",
+      "bytes": 1036584,
+      "sha256": "50d6a919f0a0601d56a04eb583c780d18553aa388254ba3158eb6a00f13e2c1a"
+    },
+    {
+      "path": "adapters/noisy/README.md",
+      "bytes": 5094,
+      "sha256": "9095edf7bd351ebfc0f975358824aaffee9804de1bb7e4a876a3d57480ac5a79"
+    },
+    {
+      "path": "adapters/noisy/adapter_config.json",
+      "bytes": 798,
+      "sha256": "05824fb7ff451b23f1e698c832d026d8d7cf6e908c166e299344108bbdf9bd6d"
+    },
+    {
+      "path": "adapters/noisy/adapter_model.safetensors",
+      "bytes": 14196448,
+      "sha256": "9a0b672557d4f735ea6b239a685fb49d7c60754fed83373b8a1cc7d810cf16a1"
+    },
+    {
+      "path": "adapters/noisy/added_tokens.json",
+      "bytes": 34604,
+      "sha256": "9715fd2243b6f06a5858b5e32950d2853f73dd5bc201aafcf76f5082a2d8acd1"
+    },
+    {
+      "path": "adapters/noisy/final/README.md",
+      "bytes": 5094,
+      "sha256": "9095edf7bd351ebfc0f975358824aaffee9804de1bb7e4a876a3d57480ac5a79"
+    },
+    {
+      "path": "adapters/noisy/final/adapter_config.json",
+      "bytes": 798,
+      "sha256": "05824fb7ff451b23f1e698c832d026d8d7cf6e908c166e299344108bbdf9bd6d"
+    },
+    {
+      "path": "adapters/noisy/final/adapter_model.safetensors",
+      "bytes": 14196448,
+      "sha256": "9a0b672557d4f735ea6b239a685fb49d7c60754fed83373b8a1cc7d810cf16a1"
+    },
+    {
+      "path": "adapters/noisy/final/added_tokens.json",
+      "bytes": 34604,
+      "sha256": "9715fd2243b6f06a5858b5e32950d2853f73dd5bc201aafcf76f5082a2d8acd1"
+    },
+    {
+      "path": "adapters/noisy/final/merges.txt",
+      "bytes": 493869,
+      "sha256": "2df2990a395e35e8dfbc7511e08c12d56018d8d04691e0133e5d63b21e154dc6"
+    },
+    {
+      "path": "adapters/noisy/final/normalizer.json",
+      "bytes": 52666,
+      "sha256": "bf1c507dc8724ca9cf9903640dacfb69dae2f00edee4f21ceba106a7392f26dd"
+    },
+    {
+      "path": "adapters/noisy/final/preprocessor_config.json",
+      "bytes": 339,
+      "sha256": "a6a76d28c93edb273669eb9e0b0636a2bddbb1272c3261e47b7ca6dfdbac1b8d"
+    },
+    {
+      "path": "adapters/noisy/final/special_tokens_map.json",
+      "bytes": 2194,
+      "sha256": "e67ae3a0aaa99abcd9f187138e12db1f65c16a14761c50ef10eef2c174a7a691"
+    },
+    {
+      "path": "adapters/noisy/final/tokenizer_config.json",
+      "bytes": 282683,
+      "sha256": "2a4c4281cf9f51ac6ccc406fdc711a087afe6530f671fa7b80953edc498275ce"
+    },
+    {
+      "path": "adapters/noisy/final/training_args.bin",
+      "bytes": 5560,
+      "sha256": "b275d9366cb66e68801aaf20cc5de3f8e23c8421ad05f9271ebe4edfb0151721"
+    },
+    {
+      "path": "adapters/noisy/final/vocab.json",
+      "bytes": 1036584,
+      "sha256": "50d6a919f0a0601d56a04eb583c780d18553aa388254ba3158eb6a00f13e2c1a"
+    },
+    {
+      "path": "adapters/noisy/merges.txt",
+      "bytes": 493869,
+      "sha256": "2df2990a395e35e8dfbc7511e08c12d56018d8d04691e0133e5d63b21e154dc6"
+    },
+    {
+      "path": "adapters/noisy/normalizer.json",
+      "bytes": 52666,
+      "sha256": "bf1c507dc8724ca9cf9903640dacfb69dae2f00edee4f21ceba106a7392f26dd"
+    },
+    {
+      "path": "adapters/noisy/preprocessor_config.json",
+      "bytes": 339,
+      "sha256": "a6a76d28c93edb273669eb9e0b0636a2bddbb1272c3261e47b7ca6dfdbac1b8d"
+    },
+    {
+      "path": "adapters/noisy/runs/Aug27_00-50-30_autodl-container-c4ae4b8669-38743588/events.out.tfevents.1787763030.autodl-container-c4ae4b8669-38743588.3760.1",
+      "bytes": 15139,
+      "sha256": "3cc147ea38421965edd922b83b25745ddd9904cd28ab5ded3dc6c74356ed45e1"
+    },
+    {
+      "path": "adapters/noisy/special_tokens_map.json",
+      "bytes": 2194,
+      "sha256": "e67ae3a0aaa99abcd9f187138e12db1f65c16a14761c50ef10eef2c174a7a691"
+    },
+    {
+      "path": "adapters/noisy/tokenizer_config.json",
+      "bytes": 282683,
+      "sha256": "2a4c4281cf9f51ac6ccc406fdc711a087afe6530f671fa7b80953edc498275ce"
+    },
+    {
+      "path": "adapters/noisy/training_request.json",
+      "bytes": 289,
+      "sha256": "f529271134b05cefc6203057486b4962da1c4dfcb5e5488e405c97d6f27ba450"
+    },
+    {
+      "path": "adapters/noisy/vocab.json",
+      "bytes": 1036584,
+      "sha256": "50d6a919f0a0601d56a04eb583c780d18553aa388254ba3158eb6a00f13e2c1a"
+    },
+    {
+      "path": "adapters/noisy_reverb/README.md",
+      "bytes": 5094,
+      "sha256": "9095edf7bd351ebfc0f975358824aaffee9804de1bb7e4a876a3d57480ac5a79"
+    },
+    {
+      "path": "adapters/noisy_reverb/adapter_config.json",
+      "bytes": 798,
+      "sha256": "05824fb7ff451b23f1e698c832d026d8d7cf6e908c166e299344108bbdf9bd6d"
+    },
+    {
+      "path": "adapters/noisy_reverb/adapter_model.safetensors",
+      "bytes": 14196448,
+      "sha256": "5e90ae06e3ebb988ee21ed8b40f3cacb8bbf7a3e059029ee319f5fb9fa7514d0"
+    },
+    {
+      "path": "adapters/noisy_reverb/added_tokens.json",
+      "bytes": 34604,
+      "sha256": "9715fd2243b6f06a5858b5e32950d2853f73dd5bc201aafcf76f5082a2d8acd1"
+    },
+    {
+      "path": "adapters/noisy_reverb/final/README.md",
+      "bytes": 5094,
+      "sha256": "9095edf7bd351ebfc0f975358824aaffee9804de1bb7e4a876a3d57480ac5a79"
+    },
+    {
+      "path": "adapters/noisy_reverb/final/adapter_config.json",
+      "bytes": 798,
+      "sha256": "05824fb7ff451b23f1e698c832d026d8d7cf6e908c166e299344108bbdf9bd6d"
+    },
+    {
+      "path": "adapters/noisy_reverb/final/adapter_model.safetensors",
+      "bytes": 14196448,
+      "sha256": "5e90ae06e3ebb988ee21ed8b40f3cacb8bbf7a3e059029ee319f5fb9fa7514d0"
+    },
+    {
+      "path": "adapters/noisy_reverb/final/added_tokens.json",
+      "bytes": 34604,
+      "sha256": "9715fd2243b6f06a5858b5e32950d2853f73dd5bc201aafcf76f5082a2d8acd1"
+    },
+    {
+      "path": "adapters/noisy_reverb/final/merges.txt",
+      "bytes": 493869,
+      "sha256": "2df2990a395e35e8dfbc7511e08c12d56018d8d04691e0133e5d63b21e154dc6"
+    },
+    {
+      "path": "adapters/noisy_reverb/final/normalizer.json",
+      "bytes": 52666,
+      "sha256": "bf1c507dc8724ca9cf9903640dacfb69dae2f00edee4f21ceba106a7392f26dd"
+    },
+    {
+      "path": "adapters/noisy_reverb/final/preprocessor_config.json",
+      "bytes": 339,
+      "sha256": "a6a76d28c93edb273669eb9e0b0636a2bddbb1272c3261e47b7ca6dfdbac1b8d"
+    },
+    {
+      "path": "adapters/noisy_reverb/final/special_tokens_map.json",
+      "bytes": 2194,
+      "sha256": "e67ae3a0aaa99abcd9f187138e12db1f65c16a14761c50ef10eef2c174a7a691"
+    },
+    {
+      "path": "adapters/noisy_reverb/final/tokenizer_config.json",
+      "bytes": 282683,
+      "sha256": "2a4c4281cf9f51ac6ccc406fdc711a087afe6530f671fa7b80953edc498275ce"
+    },
+    {
+      "path": "adapters/noisy_reverb/final/training_args.bin",
+      "bytes": 5560,
+      "sha256": "f7b73b323d9b3338b48be6c6b85fe7ed32f61325b72f37bce5cafe77e3d659aa"
+    },
+    {
+      "path": "adapters/noisy_reverb/final/vocab.json",
+      "bytes": 1036584,
+      "sha256": "50d6a919f0a0601d56a04eb583c780d18553aa388254ba3158eb6a00f13e2c1a"
+    },
+    {
+      "path": "adapters/noisy_reverb/merges.txt",
+      "bytes": 493869,
+      "sha256": "2df2990a395e35e8dfbc7511e08c12d56018d8d04691e0133e5d63b21e154dc6"
+    },
+    {
+      "path": "adapters/noisy_reverb/normalizer.json",
+      "bytes": 52666,
+      "sha256": "bf1c507dc8724ca9cf9903640dacfb69dae2f00edee4f21ceba106a7392f26dd"
+    },
+    {
+      "path": "adapters/noisy_reverb/preprocessor_config.json",
+      "bytes": 339,
+      "sha256": "a6a76d28c93edb273669eb9e0b0636a2bddbb1272c3261e47b7ca6dfdbac1b8d"
+    },
+    {
+      "path": "adapters/noisy_reverb/runs/Aug27_01-27-52_autodl-container-c4ae4b8669-38743588/events.out.tfevents.1787765273.autodl-container-c4ae4b8669-38743588.3760.4",
+      "bytes": 15160,
+      "sha256": "4bb3b2dd6bfc9df79ac15a47b2e9cb92906c1b553969e9d5928e395601518d74"
+    },
+    {
+      "path": "adapters/noisy_reverb/special_tokens_map.json",
+      "bytes": 2194,
+      "sha256": "e67ae3a0aaa99abcd9f187138e12db1f65c16a14761c50ef10eef2c174a7a691"
+    },
+    {
+      "path": "adapters/noisy_reverb/tokenizer_config.json",
+      "bytes": 282683,
+      "sha256": "2a4c4281cf9f51ac6ccc406fdc711a087afe6530f671fa7b80953edc498275ce"
+    },
+    {
+      "path": "adapters/noisy_reverb/training_request.json",
+      "bytes": 289,
+      "sha256": "c4d1513dd96db4a632a08e5422ca75656fe5cf17c22cc7c9e8578b9e4f72bcc7"
+    },
+    {
+      "path": "adapters/noisy_reverb/vocab.json",
+      "bytes": 1036584,
+      "sha256": "50d6a919f0a0601d56a04eb583c780d18553aa388254ba3158eb6a00f13e2c1a"
+    },
+    {
+      "path": "adapters/reverb/README.md",
+      "bytes": 5094,
+      "sha256": "9095edf7bd351ebfc0f975358824aaffee9804de1bb7e4a876a3d57480ac5a79"
+    },
+    {
+      "path": "adapters/reverb/adapter_config.json",
+      "bytes": 798,
+      "sha256": "05824fb7ff451b23f1e698c832d026d8d7cf6e908c166e299344108bbdf9bd6d"
+    },
+    {
+      "path": "adapters/reverb/adapter_model.safetensors",
+      "bytes": 14196448,
+      "sha256": "8e7d828068b1372864f8e6cc1937b9322b4fd8e304ec574c141ab89bdb07336b"
+    },
+    {
+      "path": "adapters/reverb/added_tokens.json",
+      "bytes": 34604,
+      "sha256": "9715fd2243b6f06a5858b5e32950d2853f73dd5bc201aafcf76f5082a2d8acd1"
+    },
+    {
+      "path": "adapters/reverb/final/README.md",
+      "bytes": 5094,
+      "sha256": "9095edf7bd351ebfc0f975358824aaffee9804de1bb7e4a876a3d57480ac5a79"
+    },
+    {
+      "path": "adapters/reverb/final/adapter_config.json",
+      "bytes": 798,
+      "sha256": "05824fb7ff451b23f1e698c832d026d8d7cf6e908c166e299344108bbdf9bd6d"
+    },
+    {
+      "path": "adapters/reverb/final/adapter_model.safetensors",
+      "bytes": 14196448,
+      "sha256": "8e7d828068b1372864f8e6cc1937b9322b4fd8e304ec574c141ab89bdb07336b"
+    },
+    {
+      "path": "adapters/reverb/final/added_tokens.json",
+      "bytes": 34604,
+      "sha256": "9715fd2243b6f06a5858b5e32950d2853f73dd5bc201aafcf76f5082a2d8acd1"
+    },
+    {
+      "path": "adapters/reverb/final/merges.txt",
+      "bytes": 493869,
+      "sha256": "2df2990a395e35e8dfbc7511e08c12d56018d8d04691e0133e5d63b21e154dc6"
+    },
+    {
+      "path": "adapters/reverb/final/normalizer.json",
+      "bytes": 52666,
+      "sha256": "bf1c507dc8724ca9cf9903640dacfb69dae2f00edee4f21ceba106a7392f26dd"
+    },
+    {
+      "path": "adapters/reverb/final/preprocessor_config.json",
+      "bytes": 339,
+      "sha256": "a6a76d28c93edb273669eb9e0b0636a2bddbb1272c3261e47b7ca6dfdbac1b8d"
+    },
+    {
+      "path": "adapters/reverb/final/special_tokens_map.json",
+      "bytes": 2194,
+      "sha256": "e67ae3a0aaa99abcd9f187138e12db1f65c16a14761c50ef10eef2c174a7a691"
+    },
+    {
+      "path": "adapters/reverb/final/tokenizer_config.json",
+      "bytes": 282683,
+      "sha256": "2a4c4281cf9f51ac6ccc406fdc711a087afe6530f671fa7b80953edc498275ce"
+    },
+    {
+      "path": "adapters/reverb/final/training_args.bin",
+      "bytes": 5560,
+      "sha256": "7982f7c98922217ae894ed89143a89110a5cfecbdb41697649cf9122437d82d8"
+    },
+    {
+      "path": "adapters/reverb/final/vocab.json",
+      "bytes": 1036584,
+      "sha256": "50d6a919f0a0601d56a04eb583c780d18553aa388254ba3158eb6a00f13e2c1a"
+    },
+    {
+      "path": "adapters/reverb/merges.txt",
+      "bytes": 493869,
+      "sha256": "2df2990a395e35e8dfbc7511e08c12d56018d8d04691e0133e5d63b21e154dc6"
+    },
+    {
+      "path": "adapters/reverb/normalizer.json",
+      "bytes": 52666,
+      "sha256": "bf1c507dc8724ca9cf9903640dacfb69dae2f00edee4f21ceba106a7392f26dd"
+    },
+    {
+      "path": "adapters/reverb/preprocessor_config.json",
+      "bytes": 339,
+      "sha256": "a6a76d28c93edb273669eb9e0b0636a2bddbb1272c3261e47b7ca6dfdbac1b8d"
+    },
+    {
+      "path": "adapters/reverb/runs/Aug27_01-03-03_autodl-container-c4ae4b8669-38743588/events.out.tfevents.1787763783.autodl-container-c4ae4b8669-38743588.3760.2",
+      "bytes": 15142,
+      "sha256": "815313b0b95f8214142b84eb2f60472ba379c4d4cf9f8705c6e0d5808c2792ee"
+    },
+    {
+      "path": "adapters/reverb/special_tokens_map.json",
+      "bytes": 2194,
+      "sha256": "e67ae3a0aaa99abcd9f187138e12db1f65c16a14761c50ef10eef2c174a7a691"
+    },
+    {
+      "path": "adapters/reverb/tokenizer_config.json",
+      "bytes": 282683,
+      "sha256": "2a4c4281cf9f51ac6ccc406fdc711a087afe6530f671fa7b80953edc498275ce"
+    },
+    {
+      "path": "adapters/reverb/training_request.json",
+      "bytes": 289,
+      "sha256": "7a140bd6eaedc28eaee3369272cbcf0ec8aed46926049987b2d1486c299cc240"
+    },
+    {
+      "path": "adapters/reverb/vocab.json",
+      "bytes": 1036584,
+      "sha256": "50d6a919f0a0601d56a04eb583c780d18553aa388254ba3158eb6a00f13e2c1a"
+    },
+    {
+      "path": "evaluation.csv",
+      "bytes": 3122729,
+      "sha256": "7b359d7c3fa462d69bafe9097537a5fec2dd6272a0523008a0e7481aa64478a1"
+    },
+    {
+      "path": "evaluation.request.json",
+      "bytes": 310,
+      "sha256": "b85fe54408eb37005ed4346809dc74899e743576e30a1ff12e896ffa93f7a672"
+    },
+    {
+      "path": "evaluation.summary.json",
+      "bytes": 13456,
+      "sha256": "9604ecfe5941ffca9fd42e7a964941d089d1da3deb0d254462339a42ba9352ce"
+    },
+    {
+      "path": "gpu_smoke.json",
+      "bytes": 205,
+      "sha256": "452e6ab908a0b87598a1214096b84a8eaf4c826223f1d5fdb495a44d849e9470"
+    },
+    {
+      "path": "joint/README.md",
+      "bytes": 5094,
+      "sha256": "9095edf7bd351ebfc0f975358824aaffee9804de1bb7e4a876a3d57480ac5a79"
+    },
+    {
+      "path": "joint/added_tokens.json",
+      "bytes": 34604,
+      "sha256": "9715fd2243b6f06a5858b5e32950d2853f73dd5bc201aafcf76f5082a2d8acd1"
+    },
+    {
+      "path": "joint/clean/adapter_config.json",
+      "bytes": 798,
+      "sha256": "8fac0fbc77d3b637765344a9986170732553745bc9a72ddb34edab494db3f78e"
+    },
+    {
+      "path": "joint/clean/adapter_model.safetensors",
+      "bytes": 14196448,
+      "sha256": "2974debd3085f17aa6cf38e6f1b1ea16da8b3b331f45cfcab28cdee1cca04a4b"
+    },
+    {
+      "path": "joint/deploy/README.md",
+      "bytes": 5094,
+      "sha256": "9095edf7bd351ebfc0f975358824aaffee9804de1bb7e4a876a3d57480ac5a79"
+    },
+    {
+      "path": "joint/deploy/added_tokens.json",
+      "bytes": 34604,
+      "sha256": "9715fd2243b6f06a5858b5e32950d2853f73dd5bc201aafcf76f5082a2d8acd1"
+    },
+    {
+      "path": "joint/deploy/joint/adapter_config.json",
+      "bytes": 798,
+      "sha256": "01d3ecb38e9dd0f9f81b386f6eca2f5b5934d200db47a18b49ee2017f6738db0"
+    },
+    {
+      "path": "joint/deploy/joint/adapter_model.safetensors",
+      "bytes": 14196448,
+      "sha256": "e22c9057fc4c265743220093e581f7fdd1e86efdfcd24547b70c17ddf9bc6889"
+    },
+    {
+      "path": "joint/deploy/merges.txt",
+      "bytes": 493869,
+      "sha256": "2df2990a395e35e8dfbc7511e08c12d56018d8d04691e0133e5d63b21e154dc6"
+    },
+    {
+      "path": "joint/deploy/normalizer.json",
+      "bytes": 52666,
+      "sha256": "bf1c507dc8724ca9cf9903640dacfb69dae2f00edee4f21ceba106a7392f26dd"
+    },
+    {
+      "path": "joint/deploy/preprocessor_config.json",
+      "bytes": 339,
+      "sha256": "a6a76d28c93edb273669eb9e0b0636a2bddbb1272c3261e47b7ca6dfdbac1b8d"
+    },
+    {
+      "path": "joint/deploy/special_tokens_map.json",
+      "bytes": 2194,
+      "sha256": "e67ae3a0aaa99abcd9f187138e12db1f65c16a14761c50ef10eef2c174a7a691"
+    },
+    {
+      "path": "joint/deploy/tokenizer_config.json",
+      "bytes": 282683,
+      "sha256": "2a4c4281cf9f51ac6ccc406fdc711a087afe6530f671fa7b80953edc498275ce"
+    },
+    {
+      "path": "joint/deploy/vocab.json",
+      "bytes": 1036584,
+      "sha256": "50d6a919f0a0601d56a04eb583c780d18553aa388254ba3158eb6a00f13e2c1a"
+    },
+    {
+      "path": "joint/fast_slow/adapter_config.json",
+      "bytes": 798,
+      "sha256": "8fac0fbc77d3b637765344a9986170732553745bc9a72ddb34edab494db3f78e"
+    },
+    {
+      "path": "joint/fast_slow/adapter_model.safetensors",
+      "bytes": 14196448,
+      "sha256": "607cb5d4d5eac1b146d19e1024980368f1ee1cb022690cdaf92cd7baa584156f"
+    },
+    {
+      "path": "joint/final/README.md",
+      "bytes": 5094,
+      "sha256": "9095edf7bd351ebfc0f975358824aaffee9804de1bb7e4a876a3d57480ac5a79"
+    },
+    {
+      "path": "joint/final/added_tokens.json",
+      "bytes": 34604,
+      "sha256": "9715fd2243b6f06a5858b5e32950d2853f73dd5bc201aafcf76f5082a2d8acd1"
+    },
+    {
+      "path": "joint/final/clean/adapter_config.json",
+      "bytes": 798,
+      "sha256": "8fac0fbc77d3b637765344a9986170732553745bc9a72ddb34edab494db3f78e"
+    },
+    {
+      "path": "joint/final/clean/adapter_model.safetensors",
+      "bytes": 14196448,
+      "sha256": "2974debd3085f17aa6cf38e6f1b1ea16da8b3b331f45cfcab28cdee1cca04a4b"
+    },
+    {
+      "path": "joint/final/fast_slow/adapter_config.json",
+      "bytes": 798,
+      "sha256": "8fac0fbc77d3b637765344a9986170732553745bc9a72ddb34edab494db3f78e"
+    },
+    {
+      "path": "joint/final/fast_slow/adapter_model.safetensors",
+      "bytes": 14196448,
+      "sha256": "607cb5d4d5eac1b146d19e1024980368f1ee1cb022690cdaf92cd7baa584156f"
+    },
+    {
+      "path": "joint/final/joint/adapter_config.json",
+      "bytes": 798,
+      "sha256": "01d3ecb38e9dd0f9f81b386f6eca2f5b5934d200db47a18b49ee2017f6738db0"
+    },
+    {
+      "path": "joint/final/joint/adapter_model.safetensors",
+      "bytes": 14196448,
+      "sha256": "e22c9057fc4c265743220093e581f7fdd1e86efdfcd24547b70c17ddf9bc6889"
+    },
+    {
+      "path": "joint/final/merges.txt",
+      "bytes": 493869,
+      "sha256": "2df2990a395e35e8dfbc7511e08c12d56018d8d04691e0133e5d63b21e154dc6"
+    },
+    {
+      "path": "joint/final/noisy/adapter_config.json",
+      "bytes": 798,
+      "sha256": "8fac0fbc77d3b637765344a9986170732553745bc9a72ddb34edab494db3f78e"
+    },
+    {
+      "path": "joint/final/noisy/adapter_model.safetensors",
+      "bytes": 28395328,
+      "sha256": "e2c162a853e6cbf3881eeec52b40487c5b9f780276ea12d93834ac4902fb792e"
+    },
+    {
+      "path": "joint/final/noisy_reverb/adapter_config.json",
+      "bytes": 798,
+      "sha256": "8fac0fbc77d3b637765344a9986170732553745bc9a72ddb34edab494db3f78e"
+    },
+    {
+      "path": "joint/final/noisy_reverb/adapter_model.safetensors",
+      "bytes": 14196448,
+      "sha256": "5e90ae06e3ebb988ee21ed8b40f3cacb8bbf7a3e059029ee319f5fb9fa7514d0"
+    },
+    {
+      "path": "joint/final/normalizer.json",
+      "bytes": 52666,
+      "sha256": "bf1c507dc8724ca9cf9903640dacfb69dae2f00edee4f21ceba106a7392f26dd"
+    },
+    {
+      "path": "joint/final/preprocessor_config.json",
+      "bytes": 339,
+      "sha256": "a6a76d28c93edb273669eb9e0b0636a2bddbb1272c3261e47b7ca6dfdbac1b8d"
+    },
+    {
+      "path": "joint/final/reverb/adapter_config.json",
+      "bytes": 798,
+      "sha256": "8fac0fbc77d3b637765344a9986170732553745bc9a72ddb34edab494db3f78e"
+    },
+    {
+      "path": "joint/final/reverb/adapter_model.safetensors",
+      "bytes": 28397056,
+      "sha256": "7209f37b664b4f1a616a5bb469e225adcec9f6acc01d27f15dc61bc341a70c50"
+    },
+    {
+      "path": "joint/final/special_tokens_map.json",
+      "bytes": 2194,
+      "sha256": "e67ae3a0aaa99abcd9f187138e12db1f65c16a14761c50ef10eef2c174a7a691"
+    },
+    {
+      "path": "joint/final/tokenizer_config.json",
+      "bytes": 282683,
+      "sha256": "2a4c4281cf9f51ac6ccc406fdc711a087afe6530f671fa7b80953edc498275ce"
+    },
+    {
+      "path": "joint/final/training_args.bin",
+      "bytes": 5560,
+      "sha256": "cc5d6db09b35189c7a63865d671331a3e62b2bca0c3fe2c04f875a10d459ae12"
+    },
+    {
+      "path": "joint/final/vocab.json",
+      "bytes": 1036584,
+      "sha256": "50d6a919f0a0601d56a04eb583c780d18553aa388254ba3158eb6a00f13e2c1a"
+    },
+    {
+      "path": "joint/joint/adapter_config.json",
+      "bytes": 798,
+      "sha256": "01d3ecb38e9dd0f9f81b386f6eca2f5b5934d200db47a18b49ee2017f6738db0"
+    },
+    {
+      "path": "joint/joint/adapter_model.safetensors",
+      "bytes": 14196448,
+      "sha256": "e22c9057fc4c265743220093e581f7fdd1e86efdfcd24547b70c17ddf9bc6889"
+    },
+    {
+      "path": "joint/merges.txt",
+      "bytes": 493869,
+      "sha256": "2df2990a395e35e8dfbc7511e08c12d56018d8d04691e0133e5d63b21e154dc6"
+    },
+    {
+      "path": "joint/noisy/adapter_config.json",
+      "bytes": 798,
+      "sha256": "8fac0fbc77d3b637765344a9986170732553745bc9a72ddb34edab494db3f78e"
+    },
+    {
+      "path": "joint/noisy/adapter_model.safetensors",
+      "bytes": 28395328,
+      "sha256": "e2c162a853e6cbf3881eeec52b40487c5b9f780276ea12d93834ac4902fb792e"
+    },
+    {
+      "path": "joint/noisy_reverb/adapter_config.json",
+      "bytes": 798,
+      "sha256": "8fac0fbc77d3b637765344a9986170732553745bc9a72ddb34edab494db3f78e"
+    },
+    {
+      "path": "joint/noisy_reverb/adapter_model.safetensors",
+      "bytes": 14196448,
+      "sha256": "5e90ae06e3ebb988ee21ed8b40f3cacb8bbf7a3e059029ee319f5fb9fa7514d0"
+    },
+    {
+      "path": "joint/normalizer.json",
+      "bytes": 52666,
+      "sha256": "bf1c507dc8724ca9cf9903640dacfb69dae2f00edee4f21ceba106a7392f26dd"
+    },
+    {
+      "path": "joint/preprocessor_config.json",
+      "bytes": 339,
+      "sha256": "a6a76d28c93edb273669eb9e0b0636a2bddbb1272c3261e47b7ca6dfdbac1b8d"
+    },
+    {
+      "path": "joint/reverb/adapter_config.json",
+      "bytes": 798,
+      "sha256": "8fac0fbc77d3b637765344a9986170732553745bc9a72ddb34edab494db3f78e"
+    },
+    {
+      "path": "joint/reverb/adapter_model.safetensors",
+      "bytes": 28397056,
+      "sha256": "7209f37b664b4f1a616a5bb469e225adcec9f6acc01d27f15dc61bc341a70c50"
+    },
+    {
+      "path": "joint/runs/Aug27_01-43-40_autodl-container-c4ae4b8669-38743588/events.out.tfevents.1787766220.autodl-container-c4ae4b8669-38743588.6674.0",
+      "bytes": 46761,
+      "sha256": "29bd7b180e675a434cbb370af98cc11298babd647cdf8e9196aa3106514ae4c3"
+    },
+    {
+      "path": "joint/special_tokens_map.json",
+      "bytes": 2194,
+      "sha256": "e67ae3a0aaa99abcd9f187138e12db1f65c16a14761c50ef10eef2c174a7a691"
+    },
+    {
+      "path": "joint/tokenizer_config.json",
+      "bytes": 282683,
+      "sha256": "2a4c4281cf9f51ac6ccc406fdc711a087afe6530f671fa7b80953edc498275ce"
+    },
+    {
+      "path": "joint/training_request.json",
+      "bytes": 288,
+      "sha256": "c9018b9b17f3672000613cb77967fd17bdb42907433dbae4823aef426fa4641c"
+    },
+    {
+      "path": "joint/vocab.json",
+      "bytes": 1036584,
+      "sha256": "50d6a919f0a0601d56a04eb583c780d18553aa388254ba3158eb6a00f13e2c1a"
+    },
+    {
+      "path": "preflight.json",
+      "bytes": 158,
+      "sha256": "fa3cd634288c64d79c4bf4efbac4ebd5b8137cec1bb334ccdae1691abc5debf5"
+    },
+    {
+      "path": "router_metrics.json",
+      "bytes": 665,
+      "sha256": "a160845f7fd066dbd9314ecfd3afd6380a486f118dbc0e2e64fd0a6f4e5f4de1"
+    },
+    {
+      "path": "scene_classifier.pt",
+      "bytes": 1581336,
+      "sha256": "4f59e35233c82c6c18291b57bd77176b80f608970e5d4c916a82e2ceb1961d00"
+    }
+  ]
+}

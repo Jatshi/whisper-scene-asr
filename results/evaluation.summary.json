@@ -1,6 +1,483 @@
 {
-  "utterances": 7176,
-  "base_cer": 0.08569388470146845,
-  "fused_cer": 0.08596320466357356,
-  "router_used": true
+  "utterances": 5000,
+  "systems": [
+    "base",
+    "hard",
+    "soft",
+    "joint"
+  ],
+  "bootstrap_samples": 2000,
+  "seed": 42,
+  "buckets": {
+    "overall": {
+      "utterances": 5000,
+      "routing": {
+        "reason_counts": {
+          "accepted": 4428,
+          "low_confidence": 572
+        },
+        "route_counts": {
+          "base": 572,
+          "clean": 775,
+          "fast_slow": 995,
+          "noisy": 989,
+          "noisy_reverb": 860,
+          "reverb": 809
+        },
+        "fallback_rate": 0.1144,
+        "mean_confidence": 0.8740228371739388,
+        "mean_entropy": 0.3382879959524941
+      },
+      "metrics": {
+        "base": {
+          "substitutions": 23161,
+          "deletions": 1080,
+          "insertions": 5299,
+          "reference_units": 73100,
+          "errors": 29540,
+          "cer": 0.40410396716826263
+        },
+        "hard": {
+          "substitutions": 11840,
+          "deletions": 354,
+          "insertions": 358,
+          "reference_units": 73100,
+          "errors": 12552,
+          "cer": 0.17170998632010945
+        },
+        "soft": {
+          "substitutions": 12129,
+          "deletions": 977,
+          "insertions": 1041,
+          "reference_units": 73100,
+          "errors": 14147,
+          "cer": 0.1935294117647059
+        },
+        "joint": {
+          "substitutions": 10531,
+          "deletions": 278,
+          "insertions": 193,
+          "reference_units": 73100,
+          "errors": 11002,
+          "cer": 0.1505061559507524
+        }
+      },
+      "paired_vs_base": {
+        "hard": {
+          "candidate_minus_baseline": -0.2323939808481532,
+          "ci95_low": -0.27320369246350906,
+          "ci95_high": -0.19929126740060643,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 42
+        },
+        "soft": {
+          "candidate_minus_baseline": -0.21057455540355674,
+          "ci95_low": -0.2512352454920376,
+          "ci95_high": -0.17438507248845828,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 42
+        },
+        "joint": {
+          "candidate_minus_baseline": -0.25359781121751024,
+          "ci95_low": -0.2939305043322473,
+          "ci95_high": -0.22080613737349164,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 42
+        }
+      }
+    },
+    "clean": {
+      "utterances": 1000,
+      "routing": {
+        "reason_counts": {
+          "accepted": 825,
+          "low_confidence": 175
+        },
+        "route_counts": {
+          "base": 175,
+          "clean": 745,
+          "noisy": 72,
+          "reverb": 8
+        },
+        "fallback_rate": 0.175,
+        "mean_confidence": 0.814901373744011,
+        "mean_entropy": 0.49997850181855313
+      },
+      "metrics": {
+        "base": {
+          "substitutions": 3665,
+          "deletions": 117,
+          "insertions": 344,
+          "reference_units": 14620,
+          "errors": 4126,
+          "cer": 0.28221614227086184
+        },
+        "hard": {
+          "substitutions": 1646,
+          "deletions": 38,
+          "insertions": 70,
+          "reference_units": 14620,
+          "errors": 1754,
+          "cer": 0.11997264021887825
+        },
+        "soft": {
+          "substitutions": 1743,
+          "deletions": 235,
+          "insertions": 67,
+          "reference_units": 14620,
+          "errors": 2045,
+          "cer": 0.13987688098495213
+        },
+        "joint": {
+          "substitutions": 1248,
+          "deletions": 20,
+          "insertions": 11,
+          "reference_units": 14620,
+          "errors": 1279,
+          "cer": 0.08748290013679891
+        }
+      },
+      "paired_vs_base": {
+        "hard": {
+          "candidate_minus_baseline": -0.16224350205198357,
+          "ci95_low": -0.17442731054803776,
+          "ci95_high": -0.14994773927425134,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 42
+        },
+        "soft": {
+          "candidate_minus_baseline": -0.1423392612859097,
+          "ci95_low": -0.15601189313019792,
+          "ci95_high": -0.12853536972934176,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 42
+        },
+        "joint": {
+          "candidate_minus_baseline": -0.19473324213406293,
+          "ci95_low": -0.2068407163406885,
+          "ci95_high": -0.18194974793551597,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 42
+        }
+      }
+    },
+    "noisy": {
+      "utterances": 1000,
+      "routing": {
+        "reason_counts": {
+          "accepted": 873,
+          "low_confidence": 127
+        },
+        "route_counts": {
+          "base": 127,
+          "clean": 14,
+          "noisy": 829,
+          "noisy_reverb": 30
+        },
+        "fallback_rate": 0.127,
+        "mean_confidence": 0.8548754243552685,
+        "mean_entropy": 0.37369879228872055
+      },
+      "metrics": {
+        "base": {
+          "substitutions": 4113,
+          "deletions": 162,
+          "insertions": 274,
+          "reference_units": 14620,
+          "errors": 4549,
+          "cer": 0.31114911080711355
+        },
+        "hard": {
+          "substitutions": 2102,
+          "deletions": 62,
+          "insertions": 50,
+          "reference_units": 14620,
+          "errors": 2214,
+          "cer": 0.15143638850889193
+        },
+        "soft": {
+          "substitutions": 2165,
+          "deletions": 260,
+          "insertions": 45,
+          "reference_units": 14620,
+          "errors": 2470,
+          "cer": 0.1689466484268126
+        },
+        "joint": {
+          "substitutions": 1767,
+          "deletions": 38,
+          "insertions": 23,
+          "reference_units": 14620,
+          "errors": 1828,
+          "cer": 0.1250341997264022
+        }
+      },
+      "paired_vs_base": {
+        "hard": {
+          "candidate_minus_baseline": -0.15971272229822162,
+          "ci95_low": -0.1720442565962429,
+          "ci95_high": -0.14770362721917668,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 42
+        },
+        "soft": {
+          "candidate_minus_baseline": -0.14220246238030096,
+          "ci95_low": -0.1556139368880266,
+          "ci95_high": -0.12980123396395876,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 42
+        },
+        "joint": {
+          "candidate_minus_baseline": -0.18611491108071135,
+          "ci95_low": -0.19844161083184014,
+          "ci95_high": -0.1735576171410908,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 42
+        }
+      }
+    },
+    "reverb": {
+      "utterances": 1000,
+      "routing": {
+        "reason_counts": {
+          "accepted": 849,
+          "low_confidence": 151
+        },
+        "route_counts": {
+          "base": 151,
+          "clean": 15,
+          "noisy": 12,
+          "noisy_reverb": 46,
+          "reverb": 776
+        },
+        "fallback_rate": 0.151,
+        "mean_confidence": 0.8438614485859871,
+        "mean_entropy": 0.41095164719215715
+      },
+      "metrics": {
+        "base": {
+          "substitutions": 3904,
+          "deletions": 157,
+          "insertions": 321,
+          "reference_units": 14620,
+          "errors": 4382,
+          "cer": 0.2997264021887825
+        },
+        "hard": {
+          "substitutions": 1983,
+          "deletions": 55,
+          "insertions": 65,
+          "reference_units": 14620,
+          "errors": 2103,
+          "cer": 0.14384404924760602
+        },
+        "soft": {
+          "substitutions": 2060,
+          "deletions": 166,
+          "insertions": 61,
+          "reference_units": 14620,
+          "errors": 2287,
+          "cer": 0.1564295485636115
+        },
+        "joint": {
+          "substitutions": 1639,
+          "deletions": 37,
+          "insertions": 19,
+          "reference_units": 14620,
+          "errors": 1695,
+          "cer": 0.11593707250341997
+        }
+      },
+      "paired_vs_base": {
+        "hard": {
+          "candidate_minus_baseline": -0.15588235294117647,
+          "ci95_low": -0.16821659496134922,
+          "ci95_high": -0.142546881762816,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 42
+        },
+        "soft": {
+          "candidate_minus_baseline": -0.143296853625171,
+          "ci95_low": -0.15623887847464435,
+          "ci95_high": -0.12951314837139058,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 42
+        },
+        "joint": {
+          "candidate_minus_baseline": -0.18378932968536252,
+          "ci95_low": -0.19608575595736352,
+          "ci95_high": -0.1700857456841477,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 42
+        }
+      }
+    },
+    "fast_slow": {
+      "utterances": 1000,
+      "routing": {
+        "reason_counts": {
+          "accepted": 995,
+          "low_confidence": 5
+        },
+        "route_counts": {
+          "base": 5,
+          "fast_slow": 995
+        },
+        "fallback_rate": 0.005,
+        "mean_confidence": 0.9823948097527027,
+        "mean_entropy": 0.08601276504105222
+      },
+      "metrics": {
+        "base": {
+          "substitutions": 5487,
+          "deletions": 185,
+          "insertions": 2280,
+          "reference_units": 14620,
+          "errors": 7952,
+          "cer": 0.5439124487004104
+        },
+        "hard": {
+          "substitutions": 2296,
+          "deletions": 47,
+          "insertions": 30,
+          "reference_units": 14620,
+          "errors": 2373,
+          "cer": 0.16231190150478797
+        },
+        "soft": {
+          "substitutions": 2297,
+          "deletions": 45,
+          "insertions": 25,
+          "reference_units": 14620,
+          "errors": 2367,
+          "cer": 0.1619015047879617
+        },
+        "joint": {
+          "substitutions": 2330,
+          "deletions": 55,
+          "insertions": 31,
+          "reference_units": 14620,
+          "errors": 2416,
+          "cer": 0.1652530779753762
+        }
+      },
+      "paired_vs_base": {
+        "hard": {
+          "candidate_minus_baseline": -0.3816005471956225,
+          "ci95_low": -0.5227956450757145,
+          "ci95_high": -0.27158371981227586,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 42
+        },
+        "soft": {
+          "candidate_minus_baseline": -0.3820109439124487,
+          "ci95_low": -0.5238661951797282,
+          "ci95_high": -0.272331246180227,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 42
+        },
+        "joint": {
+          "candidate_minus_baseline": -0.37865937072503425,
+          "ci95_low": -0.5196693705187746,
+          "ci95_high": -0.26877814693652463,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 42
+        }
+      }
+    },
+    "noisy_reverb": {
+      "utterances": 1000,
+      "routing": {
+        "reason_counts": {
+          "accepted": 886,
+          "low_confidence": 114
+        },
+        "route_counts": {
+          "base": 114,
+          "clean": 1,
+          "noisy": 76,
+          "noisy_reverb": 784,
+          "reverb": 25
+        },
+        "fallback_rate": 0.114,
+        "mean_confidence": 0.8740811294317246,
+        "mean_entropy": 0.3207982734219902
+      },
+      "metrics": {
+        "base": {
+          "substitutions": 5992,
+          "deletions": 459,
+          "insertions": 2080,
+          "reference_units": 14620,
+          "errors": 8531,
+          "cer": 0.583515731874145
+        },
+        "hard": {
+          "substitutions": 3813,
+          "deletions": 152,
+          "insertions": 143,
+          "reference_units": 14620,
+          "errors": 4108,
+          "cer": 0.28098495212038305
+        },
+        "soft": {
+          "substitutions": 3864,
+          "deletions": 271,
+          "insertions": 843,
+          "reference_units": 14620,
+          "errors": 4978,
+          "cer": 0.3404924760601915
+        },
+        "joint": {
+          "substitutions": 3547,
+          "deletions": 128,
+          "insertions": 109,
+          "reference_units": 14620,
+          "errors": 3784,
+          "cer": 0.25882352941176473
+        }
+      },
+      "paired_vs_base": {
+        "hard": {
+          "candidate_minus_baseline": -0.3025307797537619,
+          "ci95_low": -0.4526812441066438,
+          "ci95_high": -0.19025759006915413,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 42
+        },
+        "soft": {
+          "candidate_minus_baseline": -0.24302325581395345,
+          "ci95_low": -0.40731277881962175,
+          "ci95_high": -0.10590037230876127,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 42
+        },
+        "joint": {
+          "candidate_minus_baseline": -0.32469220246238023,
+          "ci95_low": -0.4768635440288223,
+          "ci95_high": -0.2124577171019295,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 42
+        }
+      }
+    }
+  }
 }
