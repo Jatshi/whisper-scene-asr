@@ -1,7 +1,7 @@
 # Whisper Scene ASR v2 最终路径、运行与交付统计
 
 > 更新时间：2026-08-27（Asia/Shanghai）  
-> 当前状态：AutoDL 12-stage 完整链路已结束；全量产物已拉取到 F 盘并完成顶层 SHA-256 对照。GitHub 与 Hugging Face 的最终发布状态以本文第 7 节为准。
+> 当前状态：AutoDL 13-stage 完整链路已结束；全量产物已拉取到 F 盘并完成顶层 SHA-256 对照。GitHub 与 Hugging Face 的最终发布状态以本文第 7 节为准。
 
 ## 1. 关键绝对路径
 
@@ -17,20 +17,21 @@
 
 ## 2. 正式运行状态
 
-`output/v2/stages/` 中 12 个阶段全部完成：
+`output/v2/stages/` 中 13 个 marker 全部完成：
 
 1. `00_preflight`
 2. `01_dependencies`
-3. `02_assets`
-4. `03_gpu_smoke`
-5. `04_dataset`
-6. `05_scene_adapters`
-7. `06_router`
-8. `07_joint_init`
-9. `08_joint_adapter`
-10. `09_evaluation`
-11. `10_manifest`
-12. `11_package`
+3. `02_download`
+4. `02_gpu_smoke`
+5. `03_aishell_manifest`
+6. `04_asset_manifest`
+7. `05_scene_corpus`
+8. `06_scene_adapters`
+9. `07_router`
+10. `08_joint_adapter`
+11. `09_bucketed_evaluation`
+12. `10_manifest`
+13. `11_package`
 
 运行环境：Python 3.10.8、PyTorch 2.3.1+cu121、Transformers 4.46.3、PEFT 0.13.2；GPU 为 NVIDIA GeForce RTX 4080 SUPER 32GB。GPU smoke 已完成真实 Whisper-small + LoRA 前向、反向与梯度有限性检查。
 
@@ -78,7 +79,7 @@ joint-minus-base 为 -25.360 个百分点，2,000 次 utterance-paired bootstrap
 
 ## 6. 代码与文档
 
-核心代码包括真实退化构建、五专家 LoRA、校准路由、证据门控、soft adapter LRU、joint 微调、逐条四路评测、bootstrap、12-stage 恢复和可移植打包。当前 CPU 质量基线为：
+核心代码包括真实退化构建、五专家 LoRA、校准路由、证据门控、soft adapter LRU、joint 微调、逐条四路评测、bootstrap、13-stage 恢复和可移植打包。当前 CPU 质量基线为：
 
 - `ruff check` 通过；
 - `compileall` 通过；
@@ -97,7 +98,7 @@ joint-minus-base 为 -25.360 个百分点，2,000 次 utterance-paired bootstrap
 - GitHub main：`https://github.com/Jatshi/whisper-scene-asr`，v2 源码、测试、README、结果和踩坑文档已发布。
 - Hugging Face：`https://huggingface.co/jatshi/whisper-scene-asr/tree/main/v2`，已发布 18 个 v2 文件、451,499,414 bytes；revision 为 `479795b1f3cb0554c24c3b087df49a189fe89451`。
 - Hugging Face 上完整 tar 的 LFS SHA-256 为 `25434d6e6e0bc372aec3f6c0304550e07044945645e0b816379e87e962a711cd`，与 F 盘、AutoDL 一致。
-- F 盘纯源码包为 131,211 bytes，SHA-256 `5717ade28b7fc73de9a967596f138c916925aa3383fbf713b2fcb6f7a4e19672`。为避免统计文件记录自身哈希造成循环变化，源码包只排除了本统计文档，代码、测试、README 与其他文档均包含。
+- F 盘纯源码包为 131,214 bytes，SHA-256 `31eee600f4a84471468ff814b0a987ad8b209eda09488926e58f78cd8c2c8fbc`。为避免统计文件记录自身哈希造成循环变化，源码包只排除了本统计文档，代码、测试、README 与其他文档均包含。
 
 GitHub 只发布源码、小型结果和文档；Hugging Face 发布五个专家 adapter、joint adapter、路由器、关键结果 JSON 与 347.78MB 可移植包；F 盘保留完整 1.395GB 实验目录。
 

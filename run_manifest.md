@@ -4,7 +4,7 @@ The machine-readable source of truth is `output/v2/run_manifest.json`; a small c
 
 ## Completed execution
 
-- Status: `complete`, 12/12 pipeline stages finished.
+- Status: `complete`, 13/13 pipeline stage markers finished.
 - Platform: Linux, Python 3.10.8, PyTorch 2.3.1+cu121.
 - GPU: NVIDIA GeForce RTX 4080 SUPER, 32,760 MiB.
 - Base model: `openai/whisper-small`.

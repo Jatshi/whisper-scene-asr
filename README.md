@@ -71,7 +71,7 @@ flowchart LR
 - 五个场景专家、一次 encoder 特征的轻量 MLP 路由器、温度校准、ECE、混淆矩阵。
 - 低置信 / 高熵回退、top-2 稀疏 soft 权重、有界 adapter 缓存与显式淘汰。
 - base / hard / soft / joint 四路逐条预测；语料级 CER、场景分桶、配对 bootstrap 95% CI。
-- 12-stage 可恢复 AutoDL 流水线、训练请求指纹、checkpoint 续训、GPU smoke、SHA-256 运行清单。
+- 13-stage 可恢复 AutoDL 流水线、训练请求指纹、checkpoint 续训、GPU smoke、SHA-256 运行清单。
 
 ## 快速开始
 
