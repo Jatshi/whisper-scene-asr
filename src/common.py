@@ -58,6 +58,41 @@ def manifest_fingerprint(rows: Sequence[dict]) -> str:
     return digest.hexdigest()
 
 
+def stratified_limit(rows: list[dict], limit: int, strata: Sequence[str] = SCENE_NAMES) -> list[dict]:
+    """Select a deterministic, stratum-balanced subset without order bias."""
+    if limit <= 0 or limit >= len(rows):
+        return rows
+    indexed = list(enumerate(rows))
+    observed = {str(row.get("scene", "unknown")) for row in rows}
+    group_order = [*strata, *sorted(observed - set(strata))]
+    groups = {
+        group: [(index, row) for index, row in indexed if str(row.get("scene", "unknown")) == group]
+        for group in group_order
+    }
+    groups = {group: items for group, items in groups.items() if items}
+    selected: list[tuple[int, dict]] = []
+    base, remainder = divmod(limit, len(groups))
+    leftovers: list[tuple[int, dict]] = []
+    for position, items in enumerate(groups.values()):
+        ranked = sorted(
+            items,
+            key=lambda item: stable_id(
+                item[1].get("source_id", item[1]["audio_path"]), item[1].get("scene", "unknown")
+            ),
+        )
+        quota = min(len(ranked), base + (position < remainder))
+        selected.extend(ranked[:quota])
+        leftovers.extend(ranked[quota:])
+    if len(selected) < limit:
+        leftovers.sort(
+            key=lambda item: stable_id(
+                item[1].get("source_id", item[1]["audio_path"]), item[1].get("scene", "unknown")
+            )
+        )
+        selected.extend(leftovers[: limit - len(selected)])
+    return [row for _, row in sorted(selected, key=lambda item: item[0])]
+
+
 def assert_disjoint_sources(*splits: Sequence[dict]) -> None:
     """Fail when augmented views of the same utterance cross data splits."""
     seen: set[str] = set()

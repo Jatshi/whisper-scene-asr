@@ -1,0 +1,9 @@
+{
+  "schema_version": "3.0",
+  "selected_on": "validation_only",
+  "confidence_threshold": 0.45,
+  "entropy_threshold": 1.5,
+  "validation_cer": 0.347972027972028,
+  "fallback_rate": 0.94,
+  "grid_size": 25
+}

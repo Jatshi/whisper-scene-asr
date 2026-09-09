@@ -1,12 +1,13 @@
-# Whisper Scene ASR v2
+# Whisper Scene ASR v3
 
 <p align="center">
-  <strong>面向中文多声学场景的可复现 Whisper-small + LoRA 工程</strong><br />
-  真实退化数据 · 五专家路由 · 置信度回退 · 联合微调 · 分桶统计评测
+  <strong>面向中文多声学场景的 Whisper-small + LoRA + 在线策略蒸馏工程</strong><br />
+  真实退化数据 · 五专家路由 · OPD 后训练 · 安全回退 · 三随机种子评测
 </p>
 
 <p align="center">
   <a href="https://huggingface.co/jatshi/whisper-scene-asr/tree/main/v2"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Model-v2%20Artifacts-ffcc4d?style=for-the-badge" alt="Hugging Face v2 artifacts" /></a>
+  <a href="https://huggingface.co/jatshi/whisper-scene-asr/tree/main/v3-opd-validation"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Policy-v3%20OPD-f59e0b?style=for-the-badge" alt="Hugging Face v3 OPD artifacts" /></a>
   <a href="https://github.com/Jatshi/whisper-scene-asr/actions"><img src="https://img.shields.io/github/actions/workflow/status/Jatshi/whisper-scene-asr/ci.yml?branch=main&style=for-the-badge&label=tests" alt="CI" /></a>
   <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
   <img src="https://img.shields.io/badge/License-MIT-1f6feb?style=for-the-badge" alt="MIT" />
@@ -15,6 +16,8 @@
 ![Whisper Scene ASR interactive demo](assets/readme/sounddet-demo.gif)
 
 > **状态：v2 完整链路已跑通。** AutoDL 上完成了数据构建、GPU smoke、五个场景 LoRA、校准路由器、联合 LoRA、5,000 条四系统评测、2,000 次配对 bootstrap 和制品打包。这里报告的是 AISHELL-1 派生五场景测试集结果，不外推为任意真实环境或 SOTA 结论。
+
+> **v3 OPD 验证实验已完成。** 在 RTX 3080 Ti 上完成 3 seed × 2 轮在线收集/更新、真实 CER oracle、FKL/RKL、top-k、独立阈值校准和 paired bootstrap。结果严格标为 `validation_only`：测试使用 500 条五场景等额分层子集，不冒充完整 5,000 条正式结论。详见 [v3 OPD 结果](docs/RESULTS_V3_OPD.md)。
 
 ## 一眼看懂结果
 
@@ -36,6 +39,17 @@
 | noisy + reverb | 58.35% | 28.10% | 34.05% | **25.88%** |
 
 路由器验证准确率为 **88.84%**，温度缩放后 ECE 为 **1.20%**；推理时 11.44% 的低置信样本回退到 base。完整数字、统计边界和逐桶结果见 [v2 实验结果](docs/RESULTS_V2.md)。
+
+### v3 OPD 验证结果
+
+v3 在同一 500 条分层子集上的 base CER 为 33.961%。固定门槛过度保守，hard/soft 平均 CER 仅降至 33.818%/33.814%，平均回退率 99.6%。用独立 250 条 calibration split 选择门槛后：
+
+| v3 变体 | Hard CER（3-seed mean ± SD） | Soft CER（3-seed mean ± SD） | 平均回退率 |
+|---|---:|---:|---:|
+| 固定门槛 | 33.818% ± 0.146% | 33.814% ± 0.153% | 99.6% |
+| 校准门槛 | **32.350% ± 0.777%** | 36.008% ± 3.401% | 92.8% |
+
+校准 hard 相对同子集 base 平均降低 **1.612 个百分点**，三个 seed 的 paired-bootstrap 胜出概率均为 1.000；soft 融合却不稳定。Offline-RKL 在三个 seed 上均塌缩为 100% 回退。它们是可复现的工程结论，不是被隐藏的失败结果。v3 与 v2 使用不同评测规模，且当前 v3 数值没有超过 v2 routed expert，不能混成同一排行榜。
 
 ## 为什么做这个项目
 
@@ -107,7 +121,7 @@ python -m compileall -q src app.py
 python -m pytest -q
 ```
 
-当前基线：**21 tests passed**。远端真实 `openai/whisper-small` + PEFT 前向、反向及梯度有限性 smoke 也已通过；当次 GPU 为 RTX 4080 SUPER 32GB，smoke 峰值显存 1.06GB。
+当前 v3 OPD 分支：**40 tests passed**。真实 `openai/whisper-small`、五个 LoRA 专家、Oracle 标注、两轮 OPD 更新、三 seed 评测、消融、聚合和 SHA-256 运行清单已在 RTX 3080 Ti 12GB 上端到端通过。验证实验共运行 10.20 小时，生成 30,000 条在线 annotations；完整本地输出为 188 个文件、1.24GB。
 
 ## 产物与发布
 
@@ -115,7 +129,9 @@ python -m pytest -q
 |---|---|
 | GitHub `results/` | 可审计的小型汇总结果、路由指标、GPU smoke 和运行清单 |
 | [Hugging Face `v2/`](https://huggingface.co/jatshi/whisper-scene-asr/tree/main/v2) | 五专家 adapter、joint 部署 adapter、路由器和完整可移植包 |
+| [Hugging Face `v3-opd-validation/`](https://huggingface.co/jatshi/whisper-scene-asr/tree/main/v3-opd-validation) | 三 seed OPD 策略权重、训练摘要、评测摘要与运行清单 |
 | 本地 `output/v2/` | 324 个完整实验文件，含 checkpoint、逐条评测与全部中间产物 |
+| 本地 `output/v3-opd-validation/` | 188 个完整实验文件，含 annotations、逐条评测、日志、遥测与全部策略权重 |
 
 主要文件：
 
@@ -125,10 +141,14 @@ python -m pytest -q
 - `joint/deploy/joint/`：joint 部署 LoRA。
 - `run_manifest.json`：环境、数据、指标和关键文件 SHA-256。
 - `whisper-scene-asr-v2.tar.gz`：排除 checkpoint/cache 的 347.78MB 可移植包。
+- `results/v3-opd-validation/run_manifest.json`：v3 验证运行的环境、状态和 163 个制品哈希。
+- `results/v3-opd-validation/multiseed_summary.json`：三 seed 固定门槛主结果。
 
 ## 文档导航
 
 - [v2 实验结果、统计解释与结论边界](docs/RESULTS_V2.md)
+- [v3 OPD 验证结果、消融与声明边界](docs/RESULTS_V3_OPD.md)
+- [v3 AutoDL 最终执行记录与踩坑](docs/AUTODL_EXECUTION_STATUS_V3_OPD.md)
 - [完整链路踩坑、根因和修复](docs/TROUBLESHOOTING_V2.md)
 - [实现与验收追踪](docs/IMPLEMENTATION_AND_ACCEPTANCE.md)
 - [AutoDL 运行手册](docs/AUTODL_RUNBOOK.md)

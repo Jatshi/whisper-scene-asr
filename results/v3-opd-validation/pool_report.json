@@ -1,0 +1,12 @@
+{
+  "schema_version": "3.0",
+  "train_rows": 25000,
+  "validation_rows": 2500,
+  "validation_rows_in_pool": 2250,
+  "calibration_rows": 250,
+  "opd_pool_rows": 27250,
+  "held_out_test_rows": 5000,
+  "source_disjoint": true,
+  "pool_fingerprint": "ba0c458984904c61a075707fc2d341e73140b485e0826be1c274c84c8a085dc2",
+  "test_fingerprint": "4dc06428ea245b7fd6fc12948e274ab20bba41ca6289586173b77136b794cfea"
+}

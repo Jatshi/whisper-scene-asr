@@ -34,14 +34,24 @@ class SceneRouter:
     def predict(self, audio_path: str) -> dict[str, float]:
         return self.predict_batch([audio_path])[0]
 
-    def predict_batch(self, audio_paths: list[str]) -> list[dict[str, float]]:
+    def summarize_batch(self, audio_paths: list[str]) -> torch.Tensor:
+        """Return the exact mean+std encoder state consumed by v2/v3 routers."""
+        if not audio_paths:
+            return torch.empty((0, self.classifier.net[0].in_features), dtype=torch.float32)
         waveforms = [load_audio(path)[0] for path in audio_paths]
         features = self.extractor(waveforms, sampling_rate=16000, return_tensors="pt").input_features.to(self.device)
         with (
             torch.inference_mode(),
             torch.autocast(device_type="cuda", dtype=torch.float16, enabled=self.device == "cuda"),
         ):
-            logits = self.classifier(self.encoder(features).last_hidden_state) / self.temperature
+            hidden = self.encoder(features).last_hidden_state
+            summaries = self.classifier.summarize(hidden)
+        return summaries.float().cpu()
+
+    def predict_batch(self, audio_paths: list[str]) -> list[dict[str, float]]:
+        summaries = self.summarize_batch(audio_paths).to(self.device)
+        with torch.inference_mode():
+            logits = self.classifier.forward_summary(summaries) / self.temperature
             probabilities = torch.softmax(logits, -1).float().cpu().tolist()
         return [dict(zip(SCENE_NAMES, row, strict=True)) for row in probabilities]
 
@@ -63,6 +73,7 @@ class FusedWhisperInference:
         self.base = WhisperForConditionalGeneration.from_pretrained(model_name, torch_dtype=dtype).to(self.device)
         self.base.generation_config.language = "zh"
         self.base.generation_config.task = "transcribe"
+        self.base.generation_config.forced_decoder_ids = None
         self.base.config.forced_decoder_ids = None
         self.base.config.suppress_tokens = []
         self.model: PeftModel | None = None
@@ -79,21 +90,37 @@ class FusedWhisperInference:
             self.model.load_adapter(path, adapter_name=name, is_trainable=False)
         self.adapter_names.add(name)
 
-    def _features(self, audio_path: str) -> torch.Tensor:
+    def _model_inputs(self, audio_path: str) -> dict[str, torch.Tensor]:
         audio, sample_rate = load_audio(audio_path)
-        features = self.processor(audio, sampling_rate=sample_rate, return_tensors="pt").input_features
-        return features.to(device=self.device, dtype=self.base.dtype)
+        encoded = self.processor(
+            audio,
+            sampling_rate=sample_rate,
+            return_tensors="pt",
+            return_attention_mask=True,
+        )
+        return {
+            "input_features": encoded.input_features.to(device=self.device, dtype=self.base.dtype),
+            "attention_mask": encoded.attention_mask.to(device=self.device),
+        }
 
-    def _features_batch(self, audio_paths: list[str]) -> torch.Tensor:
+    def _model_inputs_batch(self, audio_paths: list[str]) -> dict[str, torch.Tensor]:
         waveforms = [load_audio(path)[0] for path in audio_paths]
-        features = self.processor(waveforms, sampling_rate=16000, return_tensors="pt").input_features
-        return features.to(device=self.device, dtype=self.base.dtype)
+        encoded = self.processor(
+            waveforms,
+            sampling_rate=16000,
+            return_tensors="pt",
+            return_attention_mask=True,
+        )
+        return {
+            "input_features": encoded.input_features.to(device=self.device, dtype=self.base.dtype),
+            "attention_mask": encoded.attention_mask.to(device=self.device),
+        }
 
     def _generate(self, audio_path: str, disable_adapters: bool = False) -> str:
         target = self.model or self.base
         context = target.disable_adapter() if disable_adapters and self.model is not None else nullcontext()
         with context, torch.inference_mode():
-            token_ids = target.generate(self._features(audio_path))
+            token_ids = target.generate(**self._model_inputs(audio_path))
         return self.processor.batch_decode(token_ids, skip_special_tokens=True)[0].strip()
 
     def transcribe_base(self, audio_path: str) -> str:
@@ -107,7 +134,7 @@ class FusedWhisperInference:
         target = self.model or self.base
         context = target.disable_adapter() if self.model is not None else nullcontext()
         with context, torch.inference_mode():
-            token_ids = target.generate(self._features_batch(audio_paths))
+            token_ids = target.generate(**self._model_inputs_batch(audio_paths))
         return [text.strip() for text in self.processor.batch_decode(token_ids, skip_special_tokens=True)]
 
     def transcribe_adapter(self, audio_path: str, name: str) -> str:
@@ -123,17 +150,24 @@ class FusedWhisperInference:
             return []
         self.model.set_adapter(name)
         with torch.inference_mode():
-            token_ids = self.model.generate(self._features_batch(audio_paths))
+            token_ids = self.model.generate(**self._model_inputs_batch(audio_paths))
         return [text.strip() for text in self.processor.batch_decode(token_ids, skip_special_tokens=True)]
 
     def _fusion_name(self, weights: dict[str, float]) -> str:
         signature = "_".join(f"{key}-{value:.4f}" for key, value in sorted(weights.items()))
         return "fusion_" + signature.replace(".", "p")
 
-    def _activate_soft_fusion(self, probabilities: dict[str, float]) -> str:
+    def _activate_soft_weights(self, weights: dict[str, float]) -> str:
         if self.model is None:
             raise RuntimeError("No adapters loaded")
-        weights = self.soft_weights(probabilities)
+        unknown = set(weights) - self.adapter_names
+        if unknown:
+            raise KeyError(f"Fusion weights reference unloaded adapters: {sorted(unknown)}")
+        weights = {name: float(value) for name, value in weights.items() if float(value) > 0}
+        total = sum(weights.values())
+        if total <= 0:
+            raise ValueError("Fusion weights must contain positive mass")
+        weights = {name: value / total for name, value in weights.items()}
         if not weights:
             raise RuntimeError("No scene adapters available for soft fusion")
         name = self._fusion_name(weights)
@@ -148,6 +182,9 @@ class FusedWhisperInference:
         self.model.set_adapter(name)
         return name
 
+    def _activate_soft_fusion(self, probabilities: dict[str, float]) -> str:
+        return self._activate_soft_weights(self.soft_weights(probabilities))
+
     def soft_weights(self, probabilities: dict[str, float]) -> dict[str, float]:
         experts = self.adapter_names & set(SCENE_NAMES)
         return sparsify_weights(
@@ -157,6 +194,21 @@ class FusedWhisperInference:
     def transcribe_soft(self, audio_path: str, probabilities: dict[str, float]) -> str:
         self._activate_soft_fusion(probabilities)
         return self._generate(audio_path)
+
+    def transcribe_soft_weights(self, audio_path: str, weights: dict[str, float]) -> str:
+        """Decode with policy-provided expert weights instead of v2 scene probabilities."""
+        self._activate_soft_weights(weights)
+        return self._generate(audio_path)
+
+    def transcribe_soft_weights_batch(self, audio_paths: list[str], weights: dict[str, float]) -> list[str]:
+        if not audio_paths:
+            return []
+        if self.model is None:
+            raise RuntimeError("No adapters loaded")
+        self._activate_soft_weights(weights)
+        with torch.inference_mode():
+            token_ids = self.model.generate(**self._model_inputs_batch(audio_paths))
+        return [text.strip() for text in self.processor.batch_decode(token_ids, skip_special_tokens=True)]
 
     def transcribe_routed(
         self,

@@ -1,0 +1,18 @@
+{
+  "schema_version": "3.0",
+  "source_fingerprint": "5ff869551e29fde03f02e7dff3650e02af6168ea2d3ac3363ee55356dc894375",
+  "seeds": "42,7,2026",
+  "rounds": 4,
+  "replay_window": 4,
+  "collection_size": 5000,
+  "eval_limit": 0,
+  "oracle_fraction": 0.25,
+  "batch_size": 32,
+  "policy_batch_size": 128,
+  "policy_epochs": 10,
+  "offline_epochs": 140,
+  "run_ablations": true,
+  "kl_direction": "forward",
+  "include_joint": false,
+  "allow_single_seed_aggregate": false
+}

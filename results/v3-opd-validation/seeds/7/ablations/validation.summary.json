@@ -1,0 +1,462 @@
+{
+  "utterances": 250,
+  "systems": [
+    "base",
+    "opd_hard",
+    "opd_soft",
+    "oracle"
+  ],
+  "bootstrap_samples": 2000,
+  "seed": 7,
+  "buckets": {
+    "overall": {
+      "utterances": 250,
+      "routing": {
+        "reason_counts": {
+          "uncertainty_fallback": 250
+        },
+        "route_counts": {
+          "base": 250
+        },
+        "fallback_rate": 1.0,
+        "mean_confidence": 0.35058737570047377,
+        "mean_entropy": 1.7097540698051452
+      },
+      "metrics": {
+        "base": {
+          "substitutions": 1221,
+          "deletions": 40,
+          "insertions": 55,
+          "reference_units": 3575,
+          "errors": 1316,
+          "cer": 0.3681118881118881
+        },
+        "opd_hard": {
+          "substitutions": 1221,
+          "deletions": 40,
+          "insertions": 55,
+          "reference_units": 3575,
+          "errors": 1316,
+          "cer": 0.3681118881118881
+        },
+        "opd_soft": {
+          "substitutions": 1221,
+          "deletions": 40,
+          "insertions": 55,
+          "reference_units": 3575,
+          "errors": 1316,
+          "cer": 0.3681118881118881
+        },
+        "oracle": {
+          "substitutions": 354,
+          "deletions": 13,
+          "insertions": 4,
+          "reference_units": 3575,
+          "errors": 371,
+          "cer": 0.10377622377622378
+        }
+      },
+      "paired_vs_base": {
+        "opd_hard": {
+          "candidate_minus_baseline": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "probability_candidate_better": 0.0,
+          "bootstrap_samples": 2000,
+          "seed": 7
+        },
+        "opd_soft": {
+          "candidate_minus_baseline": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "probability_candidate_better": 0.0,
+          "bootstrap_samples": 2000,
+          "seed": 7
+        },
+        "oracle": {
+          "candidate_minus_baseline": -0.26433566433566436,
+          "ci95_low": -0.29000423971420686,
+          "ci95_high": -0.2390770953114526,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 7
+        }
+      }
+    },
+    "clean": {
+      "utterances": 50,
+      "routing": {
+        "reason_counts": {
+          "uncertainty_fallback": 50
+        },
+        "route_counts": {
+          "base": 50
+        },
+        "fallback_rate": 1.0,
+        "mean_confidence": 0.2926823481917381,
+        "mean_entropy": 1.7834117650985717
+      },
+      "metrics": {
+        "base": {
+          "substitutions": 207,
+          "deletions": 5,
+          "insertions": 14,
+          "reference_units": 715,
+          "errors": 226,
+          "cer": 0.31608391608391606
+        },
+        "opd_hard": {
+          "substitutions": 207,
+          "deletions": 5,
+          "insertions": 14,
+          "reference_units": 715,
+          "errors": 226,
+          "cer": 0.31608391608391606
+        },
+        "opd_soft": {
+          "substitutions": 207,
+          "deletions": 5,
+          "insertions": 14,
+          "reference_units": 715,
+          "errors": 226,
+          "cer": 0.31608391608391606
+        },
+        "oracle": {
+          "substitutions": 42,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_units": 715,
+          "errors": 42,
+          "cer": 0.05874125874125874
+        }
+      },
+      "paired_vs_base": {
+        "opd_hard": {
+          "candidate_minus_baseline": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "probability_candidate_better": 0.0,
+          "bootstrap_samples": 2000,
+          "seed": 7
+        },
+        "opd_soft": {
+          "candidate_minus_baseline": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "probability_candidate_better": 0.0,
+          "bootstrap_samples": 2000,
+          "seed": 7
+        },
+        "oracle": {
+          "candidate_minus_baseline": -0.2573426573426573,
+          "ci95_low": -0.3215879782522338,
+          "ci95_high": -0.19727749433106576,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 7
+        }
+      }
+    },
+    "noisy": {
+      "utterances": 50,
+      "routing": {
+        "reason_counts": {
+          "uncertainty_fallback": 50
+        },
+        "route_counts": {
+          "base": 50
+        },
+        "fallback_rate": 1.0,
+        "mean_confidence": 0.31177770406007765,
+        "mean_entropy": 1.7581106400489808
+      },
+      "metrics": {
+        "base": {
+          "substitutions": 210,
+          "deletions": 4,
+          "insertions": 12,
+          "reference_units": 715,
+          "errors": 226,
+          "cer": 0.31608391608391606
+        },
+        "opd_hard": {
+          "substitutions": 210,
+          "deletions": 4,
+          "insertions": 12,
+          "reference_units": 715,
+          "errors": 226,
+          "cer": 0.31608391608391606
+        },
+        "opd_soft": {
+          "substitutions": 210,
+          "deletions": 4,
+          "insertions": 12,
+          "reference_units": 715,
+          "errors": 226,
+          "cer": 0.31608391608391606
+        },
+        "oracle": {
+          "substitutions": 44,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_units": 715,
+          "errors": 44,
+          "cer": 0.06153846153846154
+        }
+      },
+      "paired_vs_base": {
+        "opd_hard": {
+          "candidate_minus_baseline": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "probability_candidate_better": 0.0,
+          "bootstrap_samples": 2000,
+          "seed": 7
+        },
+        "opd_soft": {
+          "candidate_minus_baseline": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "probability_candidate_better": 0.0,
+          "bootstrap_samples": 2000,
+          "seed": 7
+        },
+        "oracle": {
+          "candidate_minus_baseline": -0.2545454545454545,
+          "ci95_low": -0.31115136701034046,
+          "ci95_high": -0.19971448381900408,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 7
+        }
+      }
+    },
+    "reverb": {
+      "utterances": 50,
+      "routing": {
+        "reason_counts": {
+          "uncertainty_fallback": 50
+        },
+        "route_counts": {
+          "base": 50
+        },
+        "fallback_rate": 1.0,
+        "mean_confidence": 0.35567333310842514,
+        "mean_entropy": 1.6878951454162598
+      },
+      "metrics": {
+        "base": {
+          "substitutions": 188,
+          "deletions": 5,
+          "insertions": 9,
+          "reference_units": 715,
+          "errors": 202,
+          "cer": 0.28251748251748254
+        },
+        "opd_hard": {
+          "substitutions": 188,
+          "deletions": 5,
+          "insertions": 9,
+          "reference_units": 715,
+          "errors": 202,
+          "cer": 0.28251748251748254
+        },
+        "opd_soft": {
+          "substitutions": 188,
+          "deletions": 5,
+          "insertions": 9,
+          "reference_units": 715,
+          "errors": 202,
+          "cer": 0.28251748251748254
+        },
+        "oracle": {
+          "substitutions": 57,
+          "deletions": 1,
+          "insertions": 1,
+          "reference_units": 715,
+          "errors": 59,
+          "cer": 0.08251748251748252
+        }
+      },
+      "paired_vs_base": {
+        "opd_hard": {
+          "candidate_minus_baseline": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "probability_candidate_better": 0.0,
+          "bootstrap_samples": 2000,
+          "seed": 7
+        },
+        "opd_soft": {
+          "candidate_minus_baseline": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "probability_candidate_better": 0.0,
+          "bootstrap_samples": 2000,
+          "seed": 7
+        },
+        "oracle": {
+          "candidate_minus_baseline": -0.2,
+          "ci95_low": -0.2542152889245586,
+          "ci95_high": -0.1491805302483046,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 7
+        }
+      }
+    },
+    "fast_slow": {
+      "utterances": 50,
+      "routing": {
+        "reason_counts": {
+          "uncertainty_fallback": 50
+        },
+        "route_counts": {
+          "base": 50
+        },
+        "fallback_rate": 1.0,
+        "mean_confidence": 0.46013964116573336,
+        "mean_entropy": 1.5885972666740418
+      },
+      "metrics": {
+        "base": {
+          "substitutions": 283,
+          "deletions": 5,
+          "insertions": 6,
+          "reference_units": 715,
+          "errors": 294,
+          "cer": 0.4111888111888112
+        },
+        "opd_hard": {
+          "substitutions": 283,
+          "deletions": 5,
+          "insertions": 6,
+          "reference_units": 715,
+          "errors": 294,
+          "cer": 0.4111888111888112
+        },
+        "opd_soft": {
+          "substitutions": 283,
+          "deletions": 5,
+          "insertions": 6,
+          "reference_units": 715,
+          "errors": 294,
+          "cer": 0.4111888111888112
+        },
+        "oracle": {
+          "substitutions": 76,
+          "deletions": 1,
+          "insertions": 1,
+          "reference_units": 715,
+          "errors": 78,
+          "cer": 0.10909090909090909
+        }
+      },
+      "paired_vs_base": {
+        "opd_hard": {
+          "candidate_minus_baseline": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "probability_candidate_better": 0.0,
+          "bootstrap_samples": 2000,
+          "seed": 7
+        },
+        "opd_soft": {
+          "candidate_minus_baseline": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "probability_candidate_better": 0.0,
+          "bootstrap_samples": 2000,
+          "seed": 7
+        },
+        "oracle": {
+          "candidate_minus_baseline": -0.3020979020979021,
+          "ci95_low": -0.3684931988517041,
+          "ci95_high": -0.24202020992149278,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 7
+        }
+      }
+    },
+    "noisy_reverb": {
+      "utterances": 50,
+      "routing": {
+        "reason_counts": {
+          "uncertainty_fallback": 50
+        },
+        "route_counts": {
+          "base": 50
+        },
+        "fallback_rate": 1.0,
+        "mean_confidence": 0.33266385197639464,
+        "mean_entropy": 1.7307555317878722
+      },
+      "metrics": {
+        "base": {
+          "substitutions": 333,
+          "deletions": 21,
+          "insertions": 14,
+          "reference_units": 715,
+          "errors": 368,
+          "cer": 0.5146853146853146
+        },
+        "opd_hard": {
+          "substitutions": 333,
+          "deletions": 21,
+          "insertions": 14,
+          "reference_units": 715,
+          "errors": 368,
+          "cer": 0.5146853146853146
+        },
+        "opd_soft": {
+          "substitutions": 333,
+          "deletions": 21,
+          "insertions": 14,
+          "reference_units": 715,
+          "errors": 368,
+          "cer": 0.5146853146853146
+        },
+        "oracle": {
+          "substitutions": 135,
+          "deletions": 11,
+          "insertions": 2,
+          "reference_units": 715,
+          "errors": 148,
+          "cer": 0.206993006993007
+        }
+      },
+      "paired_vs_base": {
+        "opd_hard": {
+          "candidate_minus_baseline": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "probability_candidate_better": 0.0,
+          "bootstrap_samples": 2000,
+          "seed": 7
+        },
+        "opd_soft": {
+          "candidate_minus_baseline": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "probability_candidate_better": 0.0,
+          "bootstrap_samples": 2000,
+          "seed": 7
+        },
+        "oracle": {
+          "candidate_minus_baseline": -0.30769230769230765,
+          "ci95_low": -0.3555571360834519,
+          "ci95_high": -0.25820030592621585,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 7
+        }
+      }
+    }
+  },
+  "oracle_gap": {
+    "opd_hard": 0.26433566433566436,
+    "opd_soft": 0.26433566433566436
+  },
+  "policy_hash": "cf4a3319a2dbee056ce8010089f46904e8662846a8071e82cc885787c0c8bf71"
+}

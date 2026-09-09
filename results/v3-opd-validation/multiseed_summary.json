@@ -1,0 +1,57 @@
+{
+  "schema_version": "3.0",
+  "status": "validation_only",
+  "seeds": 3,
+  "source_reports": [
+    "/root/autodl-tmp/whisper-scene-asr/output/v3-opd-validation/seeds/42/evaluation.summary.json",
+    "/root/autodl-tmp/whisper-scene-asr/output/v3-opd-validation/seeds/7/evaluation.summary.json",
+    "/root/autodl-tmp/whisper-scene-asr/output/v3-opd-validation/seeds/2026/evaluation.summary.json"
+  ],
+  "metrics": {
+    "opd_hard": {
+      "cer_mean": 0.33818299385709666,
+      "cer_std": 0.0014554479013984178,
+      "cer_by_seed": [
+        0.33670500207842596,
+        0.33961479839268394,
+        0.33822918110018013
+      ]
+    },
+    "opd_soft": {
+      "cer_mean": 0.3381368066140132,
+      "cer_std": 0.0015262769980008647,
+      "cer_by_seed": [
+        0.33656644034917554,
+        0.33961479839268394,
+        0.33822918110018013
+      ]
+    },
+    "oracle": {
+      "cer_mean": 0.11837790402290888,
+      "cer_std": 0.0006548171852920312,
+      "cer_by_seed": [
+        0.11763890813357351,
+        0.11888596369682694,
+        0.11860884023832617
+      ]
+    }
+  },
+  "acceptance": {
+    "claim_eligible": false,
+    "reason": "stratified validation subset; not a full 5,000-utterance test claim",
+    "opd_hard_not_worse_than_v2_hard": false,
+    "opd_hard_bootstrap_probability_ge_0_95_all_seeds": false,
+    "opd_hard_bootstrap_probability_by_seed": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "opd_soft_not_worse_than_v2_soft": false,
+    "thresholds": {
+      "v2_hard_cer": 0.17171,
+      "v2_soft_cer": 0.19353,
+      "v2_joint_cer": 0.15051
+    },
+    "hard_to_joint_gap_recovered_fraction": -7.850321066698736
+  }
+}

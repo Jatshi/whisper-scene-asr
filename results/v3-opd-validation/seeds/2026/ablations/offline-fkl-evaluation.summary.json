@@ -1,0 +1,472 @@
+{
+  "utterances": 500,
+  "systems": [
+    "base",
+    "opd_hard",
+    "opd_soft",
+    "oracle"
+  ],
+  "bootstrap_samples": 2000,
+  "seed": 2026,
+  "buckets": {
+    "overall": {
+      "utterances": 500,
+      "routing": {
+        "reason_counts": {
+          "opd_policy": 12,
+          "uncertainty_fallback": 488
+        },
+        "route_counts": {
+          "base": 488,
+          "fast_slow": 5,
+          "noisy_reverb": 4,
+          "reverb": 3
+        },
+        "fallback_rate": 0.976,
+        "mean_confidence": 0.41830620262026785,
+        "mean_entropy": 1.5584648108482362
+      },
+      "metrics": {
+        "base": {
+          "substitutions": 2190,
+          "deletions": 101,
+          "insertions": 160,
+          "reference_units": 7217,
+          "errors": 2451,
+          "cer": 0.33961479839268394
+        },
+        "opd_hard": {
+          "substitutions": 2169,
+          "deletions": 100,
+          "insertions": 151,
+          "reference_units": 7217,
+          "errors": 2420,
+          "cer": 0.3353193847859221
+        },
+        "opd_soft": {
+          "substitutions": 2174,
+          "deletions": 100,
+          "insertions": 426,
+          "reference_units": 7217,
+          "errors": 2700,
+          "cer": 0.3741166689760288
+        },
+        "oracle": {
+          "substitutions": 819,
+          "deletions": 23,
+          "insertions": 14,
+          "reference_units": 7217,
+          "errors": 856,
+          "cer": 0.11860884023832617
+        }
+      },
+      "paired_vs_base": {
+        "opd_hard": {
+          "candidate_minus_baseline": -0.004295413606761833,
+          "ci95_low": -0.008028847505304037,
+          "ci95_high": -0.0012737838079540929,
+          "probability_candidate_better": 0.999,
+          "bootstrap_samples": 2000,
+          "seed": 2026
+        },
+        "opd_soft": {
+          "candidate_minus_baseline": 0.03450187058334486,
+          "ci95_low": -0.005419611988665363,
+          "ci95_high": 0.11269199113698324,
+          "probability_candidate_better": 0.3585,
+          "bootstrap_samples": 2000,
+          "seed": 2026
+        },
+        "oracle": {
+          "candidate_minus_baseline": -0.22100595815435775,
+          "ci95_low": -0.2389522461609332,
+          "ci95_high": -0.20306929887025343,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 2026
+        }
+      }
+    },
+    "clean": {
+      "utterances": 100,
+      "routing": {
+        "reason_counts": {
+          "uncertainty_fallback": 100
+        },
+        "route_counts": {
+          "base": 100
+        },
+        "fallback_rate": 1.0,
+        "mean_confidence": 0.35952583119273185,
+        "mean_entropy": 1.664649624824524
+      },
+      "metrics": {
+        "base": {
+          "substitutions": 327,
+          "deletions": 13,
+          "insertions": 30,
+          "reference_units": 1449,
+          "errors": 370,
+          "cer": 0.2553485162180814
+        },
+        "opd_hard": {
+          "substitutions": 327,
+          "deletions": 13,
+          "insertions": 30,
+          "reference_units": 1449,
+          "errors": 370,
+          "cer": 0.2553485162180814
+        },
+        "opd_soft": {
+          "substitutions": 327,
+          "deletions": 13,
+          "insertions": 30,
+          "reference_units": 1449,
+          "errors": 370,
+          "cer": 0.2553485162180814
+        },
+        "oracle": {
+          "substitutions": 74,
+          "deletions": 1,
+          "insertions": 1,
+          "reference_units": 1449,
+          "errors": 76,
+          "cer": 0.05244996549344375
+        }
+      },
+      "paired_vs_base": {
+        "opd_hard": {
+          "candidate_minus_baseline": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "probability_candidate_better": 0.0,
+          "bootstrap_samples": 2000,
+          "seed": 2026
+        },
+        "opd_soft": {
+          "candidate_minus_baseline": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "probability_candidate_better": 0.0,
+          "bootstrap_samples": 2000,
+          "seed": 2026
+        },
+        "oracle": {
+          "candidate_minus_baseline": -0.20289855072463767,
+          "ci95_low": -0.24451149753126328,
+          "ci95_high": -0.16408655010087425,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 2026
+        }
+      }
+    },
+    "noisy": {
+      "utterances": 100,
+      "routing": {
+        "reason_counts": {
+          "uncertainty_fallback": 100
+        },
+        "route_counts": {
+          "base": 100
+        },
+        "fallback_rate": 1.0,
+        "mean_confidence": 0.4336064137518406,
+        "mean_entropy": 1.5148401820659638
+      },
+      "metrics": {
+        "base": {
+          "substitutions": 408,
+          "deletions": 14,
+          "insertions": 21,
+          "reference_units": 1355,
+          "errors": 443,
+          "cer": 0.32693726937269374
+        },
+        "opd_hard": {
+          "substitutions": 408,
+          "deletions": 14,
+          "insertions": 21,
+          "reference_units": 1355,
+          "errors": 443,
+          "cer": 0.32693726937269374
+        },
+        "opd_soft": {
+          "substitutions": 408,
+          "deletions": 14,
+          "insertions": 21,
+          "reference_units": 1355,
+          "errors": 443,
+          "cer": 0.32693726937269374
+        },
+        "oracle": {
+          "substitutions": 165,
+          "deletions": 8,
+          "insertions": 1,
+          "reference_units": 1355,
+          "errors": 174,
+          "cer": 0.12841328413284134
+        }
+      },
+      "paired_vs_base": {
+        "opd_hard": {
+          "candidate_minus_baseline": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "probability_candidate_better": 0.0,
+          "bootstrap_samples": 2000,
+          "seed": 2026
+        },
+        "opd_soft": {
+          "candidate_minus_baseline": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "probability_candidate_better": 0.0,
+          "bootstrap_samples": 2000,
+          "seed": 2026
+        },
+        "oracle": {
+          "candidate_minus_baseline": -0.1985239852398524,
+          "ci95_low": -0.2346805616318495,
+          "ci95_high": -0.16230759162303665,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 2026
+        }
+      }
+    },
+    "reverb": {
+      "utterances": 100,
+      "routing": {
+        "reason_counts": {
+          "opd_policy": 3,
+          "uncertainty_fallback": 97
+        },
+        "route_counts": {
+          "base": 97,
+          "reverb": 3
+        },
+        "fallback_rate": 0.97,
+        "mean_confidence": 0.3977151267230511,
+        "mean_entropy": 1.5820820635557176
+      },
+      "metrics": {
+        "base": {
+          "substitutions": 361,
+          "deletions": 22,
+          "insertions": 32,
+          "reference_units": 1466,
+          "errors": 415,
+          "cer": 0.2830832196452933
+        },
+        "opd_hard": {
+          "substitutions": 356,
+          "deletions": 22,
+          "insertions": 30,
+          "reference_units": 1466,
+          "errors": 408,
+          "cer": 0.2783083219645293
+        },
+        "opd_soft": {
+          "substitutions": 357,
+          "deletions": 22,
+          "insertions": 30,
+          "reference_units": 1466,
+          "errors": 409,
+          "cer": 0.2789904502046385
+        },
+        "oracle": {
+          "substitutions": 138,
+          "deletions": 1,
+          "insertions": 5,
+          "reference_units": 1466,
+          "errors": 144,
+          "cer": 0.09822646657571624
+        }
+      },
+      "paired_vs_base": {
+        "opd_hard": {
+          "candidate_minus_baseline": -0.004774897680764001,
+          "ci95_low": -0.012319287562314634,
+          "ci95_high": 0.0,
+          "probability_candidate_better": 0.862,
+          "bootstrap_samples": 2000,
+          "seed": 2026
+        },
+        "opd_soft": {
+          "candidate_minus_baseline": -0.004092769440654842,
+          "ci95_low": -0.01055594651653765,
+          "ci95_high": 0.0,
+          "probability_candidate_better": 0.862,
+          "bootstrap_samples": 2000,
+          "seed": 2026
+        },
+        "oracle": {
+          "candidate_minus_baseline": -0.18485675306957708,
+          "ci95_low": -0.22356260484977886,
+          "ci95_high": -0.14918508092892332,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 2026
+        }
+      }
+    },
+    "fast_slow": {
+      "utterances": 100,
+      "routing": {
+        "reason_counts": {
+          "opd_policy": 5,
+          "uncertainty_fallback": 95
+        },
+        "route_counts": {
+          "base": 95,
+          "fast_slow": 5
+        },
+        "fallback_rate": 0.95,
+        "mean_confidence": 0.4967399574816227,
+        "mean_entropy": 1.4502186208963395
+      },
+      "metrics": {
+        "base": {
+          "substitutions": 506,
+          "deletions": 15,
+          "insertions": 40,
+          "reference_units": 1448,
+          "errors": 561,
+          "cer": 0.38743093922651933
+        },
+        "opd_hard": {
+          "substitutions": 502,
+          "deletions": 14,
+          "insertions": 39,
+          "reference_units": 1448,
+          "errors": 555,
+          "cer": 0.38328729281767954
+        },
+        "opd_soft": {
+          "substitutions": 506,
+          "deletions": 14,
+          "insertions": 39,
+          "reference_units": 1448,
+          "errors": 559,
+          "cer": 0.3860497237569061
+        },
+        "oracle": {
+          "substitutions": 170,
+          "deletions": 5,
+          "insertions": 1,
+          "reference_units": 1448,
+          "errors": 176,
+          "cer": 0.12154696132596685
+        }
+      },
+      "paired_vs_base": {
+        "opd_hard": {
+          "candidate_minus_baseline": -0.004143646408839796,
+          "ci95_low": -0.013275110929327483,
+          "ci95_high": 0.0027874564459930314,
+          "probability_candidate_better": 0.819,
+          "bootstrap_samples": 2000,
+          "seed": 2026
+        },
+        "opd_soft": {
+          "candidate_minus_baseline": -0.0013812154696132284,
+          "ci95_low": -0.010684715272813915,
+          "ci95_high": 0.007291795837983489,
+          "probability_candidate_better": 0.576,
+          "bootstrap_samples": 2000,
+          "seed": 2026
+        },
+        "oracle": {
+          "candidate_minus_baseline": -0.2658839779005525,
+          "ci95_low": -0.30901204428684986,
+          "ci95_high": -0.22335393875717818,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 2026
+        }
+      }
+    },
+    "noisy_reverb": {
+      "utterances": 100,
+      "routing": {
+        "reason_counts": {
+          "opd_policy": 4,
+          "uncertainty_fallback": 96
+        },
+        "route_counts": {
+          "base": 96,
+          "noisy_reverb": 4
+        },
+        "fallback_rate": 0.96,
+        "mean_confidence": 0.4039436839520931,
+        "mean_entropy": 1.580533562898636
+      },
+      "metrics": {
+        "base": {
+          "substitutions": 588,
+          "deletions": 37,
+          "insertions": 37,
+          "reference_units": 1499,
+          "errors": 662,
+          "cer": 0.4416277518345564
+        },
+        "opd_hard": {
+          "substitutions": 576,
+          "deletions": 37,
+          "insertions": 31,
+          "reference_units": 1499,
+          "errors": 644,
+          "cer": 0.4296197464976651
+        },
+        "opd_soft": {
+          "substitutions": 576,
+          "deletions": 37,
+          "insertions": 306,
+          "reference_units": 1499,
+          "errors": 919,
+          "cer": 0.6130753835890593
+        },
+        "oracle": {
+          "substitutions": 272,
+          "deletions": 8,
+          "insertions": 6,
+          "reference_units": 1499,
+          "errors": 286,
+          "cer": 0.19079386257505004
+        }
+      },
+      "paired_vs_base": {
+        "opd_hard": {
+          "candidate_minus_baseline": -0.012008005336891281,
+          "ci95_low": -0.026587596528136456,
+          "ci95_high": -0.0019787941136110592,
+          "probability_candidate_better": 0.9845,
+          "bootstrap_samples": 2000,
+          "seed": 2026
+        },
+        "opd_soft": {
+          "candidate_minus_baseline": 0.17144763175450295,
+          "ci95_low": -0.019181166056166054,
+          "ci95_high": 0.5471581903801834,
+          "probability_candidate_better": 0.3475,
+          "bootstrap_samples": 2000,
+          "seed": 2026
+        },
+        "oracle": {
+          "candidate_minus_baseline": -0.25083388925950634,
+          "ci95_low": -0.29049473662311726,
+          "ci95_high": -0.21610838976642227,
+          "probability_candidate_better": 1.0,
+          "bootstrap_samples": 2000,
+          "seed": 2026
+        }
+      }
+    }
+  },
+  "oracle_gap": {
+    "opd_hard": 0.21671054454759592,
+    "opd_soft": 0.2555078287377026
+  },
+  "policy_hash": "b14cd4bd949d5cfa78e11676718dfc4b1c1001d67a4f7471691b1004118c8fb3"
+}

@@ -1,0 +1,54 @@
+{
+  "status": "trained",
+  "seed": 7,
+  "examples": 10000,
+  "annotations": [
+    "/root/autodl-tmp/whisper-scene-asr/output/v3-opd-validation/seeds/7/round-0/annotations.jsonl",
+    "/root/autodl-tmp/whisper-scene-asr/output/v3-opd-validation/seeds/7/round-1/annotations.jsonl"
+  ],
+  "mode": "onpolicy",
+  "strategy_temperature_before": 1.0512710963760241,
+  "strategy_temperature_after": 1.1051709180756477,
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 0.7749498456339293
+    },
+    {
+      "epoch": 2,
+      "loss": 0.7720788211762151
+    },
+    {
+      "epoch": 3,
+      "loss": 0.7702779354928415
+    },
+    {
+      "epoch": 4,
+      "loss": 0.7683782479431056
+    },
+    {
+      "epoch": 5,
+      "loss": 0.7670818846436995
+    },
+    {
+      "epoch": 6,
+      "loss": 0.7651445269584656
+    },
+    {
+      "epoch": 7,
+      "loss": 0.7663653500472443
+    },
+    {
+      "epoch": 8,
+      "loss": 0.7674642001526265
+    },
+    {
+      "epoch": 9,
+      "loss": 0.7642848793464371
+    },
+    {
+      "epoch": 10,
+      "loss": 0.7634266260304029
+    }
+  ]
+}
